@@ -1,0 +1,78 @@
+.npmInstall {
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+.npmInstallSaveContainer {
+    position: absolute;
+    top: 654.62px;
+    left: 50px;
+    font-family: 'IBM Plex Mono';
+    z-index: 0;
+}
+
+
+
+.logo {
+    position: absolute;
+    top: 200px;
+    left: 50%;
+    transform: scale(.25);
+    width: 20vw;
+    /* or use a fixed size like 200px if preferred */
+    height: auto;
+    z-index: 2;
+}
+
+.singh {
+    width: 100%;
+    position: absolute;
+    top: 520px;
+    left: 920px;
+    font-family: 'Benton Modern Display', serif;   
+    font-style: italic; 
+    font-size: 200px;
+    display: inline-block;
+    font-weight: 900;
+    color: #f8f8ff;
+    height: 218.2px;
+    z-index: 3;   }
+
+.ramneek {
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 70px;
+    font-family: 'Benton Modern Display', serif;
+        font-style: italic;
+        font-size: 200px;
+        display: inline-block;
+        font-weight: 900;
+    color: #f8f8ff;
+    z-index: 4;   
+}
+
+.hero {
+    width: 100%;
+    margin-bottom: 200px;
+    max-width: 100vw;
+    position: relative;
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    font-size: var(--font-size-20);
+    color: var(--color-white);
+    font-family: var(--font-cormorant-garamond);
+    
+}
+
+/* Logo positioning */
+.hero :global(.my-logo-class) {
+    z-index: 10;
+    align-self: center;
+    margin-top: 260px;
+    position: relative;
+}

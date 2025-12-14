@@ -1,0 +1,312 @@
+.python {
+    position: relative;
+    font-weight: 600;
+    text-shadow: -2px 2px 17.8px rgba(0, 0, 0, 0.75);
+}
+
+.pythonWrapper {
+    flex: 1;
+    border-radius: 16px;
+    height: 145px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 10px;
+    box-sizing: border-box;
+    background-image: url('../../../../public/python.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    min-width: 200px;
+    max-width: 220px;
+}
+
+.cWrapper {
+    flex: 1;
+    border-radius: 16px;
+    height: 145px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 10px;
+    box-sizing: border-box;
+    background-image: url('../../../../public/c++.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    max-width: 160px;
+    min-width: 150px;
+}
+
+.javascriptWrapper {
+    flex: 1;
+    border-radius: 16px;
+    height: 145px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 10px;
+    box-sizing: border-box;
+    background-image: url('../../../../public/js.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    min-width: 250px;
+}
+
+.sqlWrapper {
+    width: 150px;
+    border-radius: 16px;
+    height: 145px;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 10px;
+    box-sizing: border-box;
+    background-image: url('../../../../public/sql.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+}
+
+.typescriptWrapper {
+    flex: 1;
+    border-radius: 16px;
+    height: 145px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 10px;
+    box-sizing: border-box;
+    background-image: url('../../../../public/ts.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    min-width: 260px;
+    max-width: 275px;
+}
+
+.frameParent {
+    align-self: stretch;
+    flex: 1;
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+    padding: 0px 10px;
+    gap: 20px;
+}
+
+.reactWrapper {
+    flex: 1;
+    border-radius: 16px;
+    height: 145px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 10px;
+    box-sizing: border-box;
+    background-image: url('../../../../public/react.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    min-width: 170px;
+}
+
+.gitWrapper {
+    flex: 1;
+    border-radius: 16px;
+    height: 145px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 10px;
+    box-sizing: border-box;
+    background-image: url('../../../../public/git.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    min-width: 130px;
+    max-width: 150px;
+}
+
+.jiraWrapper {
+    flex: 1;
+    border-radius: 16px;
+    height: 145px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 10px;
+    box-sizing: border-box;
+    background-image: url('../../../../public/jira.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    max-width: 150px;
+}
+
+.nextjsWrapper {
+    flex: 1;
+    border-radius: 16px;
+    height: 145px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 10px;
+    box-sizing: border-box;
+    background-image: url('../../../../public/nextjs.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    min-width: 200px;
+}
+
+.figmaWrapper {
+    flex: 1;
+    border-radius: 16px;
+    height: 145px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 10px;
+    box-sizing: border-box;
+    background-image: url('../../../../public/figma.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    min-width: 170px;
+    max-width: 200px;
+}
+
+.oopWrapper {
+    flex: 1;
+    border-radius: 16px;
+    height: 145px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 10px;
+    box-sizing: border-box;
+    background-image: url('../../../../public/oop.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    max-width: 170px;
+}
+
+.agileWrapper {
+    flex: 1;
+    border-radius: 16px;
+    height: 145px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 10px;
+    box-sizing: border-box;
+    background-image: url('../../../../public/agile.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    max-width: 170px;
+}
+
+.dbmsWrapper {
+    flex: 1;
+    border-radius: 16px;
+    height: 145px;
+    max-width: 207.2px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 10px;
+    box-sizing: border-box;
+    background-image: url('../../../../public/dbms.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+}
+
+.dsaWrapper {
+    flex: 1;
+    border-radius: 16px;
+    height: 145px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 10px;
+    box-sizing: border-box;
+    background-image: url('../../../../public/dsa.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+}
+
+.uiuxWrapper {
+    flex: 1;
+    border-radius: 16px;
+    height: 145px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 10px;
+    box-sizing: border-box;
+    background-image: url('../../../../public/uiux.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+}
+
+.bentoBox {
+    width: 90%;
+    left: 20px;
+    margin-bottom: 100px;
+    margin-top: 100px;
+    position: relative;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0px 20px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 48px;
+    color: #fff;
+    font-family: 'Geist';
+}

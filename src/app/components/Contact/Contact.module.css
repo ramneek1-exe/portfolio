@@ -1,0 +1,218 @@
+.contactSection {
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  min-height: 90vh;
+}
+
+.contactHeader {
+  width: 100%;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 73.71px;
+  color: #e8e7e3;
+  font-family: 'Geist';
+  font-weight: 600;
+}
+
+.contactText {
+  font-size: 48.43px;
+  font-weight: 300;
+  font-family: 'Bento Modern Display', serif;
+  font-style: italic;
+  margin-bottom: 100px;
+}
+
+/* button base */
+.btn {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid #048eff;
+  color: white;
+  border-radius: 2rem;
+  width: 15vw;
+  min-width: 6vw;
+  overflow: hidden;
+  cursor: pointer;
+  font-family: 'Geist';
+  z-index: 1;
+  --glow-blur: 0px;
+  --glow-spread: 0px;
+  box-shadow: 0 0 var(--glow-blur) var(--glow-spread) #20a0f0ff;
+  transition: none;
+}
+
+.btn a {
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+}
+
+.btnLabel {
+  position: relative;
+  z-index: 3;
+}
+
+/* splash circle */
+.splash {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, var(--inner-color, #0a0a1a) 0%, var(--mid-color, #001f4d) 25%, var(--outer-color, #04d9ff) 100%);
+  z-index: 1;
+  pointer-events: none;
+  will-change: left, top, width, height, filter;
+}
+
+/* Email form wrapper */
+.emailFormWrapper {
+  margin-top: 1rem;
+  padding-left: 23.8vw;
+  align-items: flex-start;
+  width: 100%;
+  display: none;
+  overflow: hidden;
+}
+
+.emailForm {
+  background: radial-gradient(circle at top center, #09258bff, #106cbbff, #04d9ff);
+  padding: 1rem;
+  border-radius: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-self: calc(50% - 40px);
+  gap: 0.5rem;
+  width: 400px;
+  max-width: 500px;
+  color: white;
+  /* margin: 0 auto; */
+  /* transform-origin: top center; */
+}
+
+.emailForm input,
+.emailForm textarea {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 2px;
+  font-family: 'Geist';
+  flex: 0 1 auto;
+  min-width: 15ch;
+  background: rgba(240, 240, 240, 0.5);
+  color: #fff;
+
+}
+
+.sendButton {
+  padding: 0.5rem;
+  border-radius: 1rem;
+  background: #0a3293;
+  font-family: 'Geist';
+  cursor: pointer;
+  border-width: 0cap;
+  transition: background 0.3s ease;
+}
+
+
+.statusText {
+  font-size: 0.9rem;
+}
+
+.inlineInputE {
+  display: inline-block;
+  background: rgba(240, 240, 240, 0.5);
+  color: #fff;
+  font-family: 'Geist';
+  font-size: 1.05rem;
+  border-radius: 0%;
+  border: none;
+  outline: none;
+  padding: 0.2rem;
+  transition: border-color 0.3s;
+}
+
+.inlineInputN {
+  display: flex;
+  flex-wrap: wrap;
+  background: rgba(240, 240, 240, 0.5);
+  color: #fff;
+  font-family: 'Geist';
+  font-size: 1.05rem;
+  border-radius: 0%;
+  border: none;
+  outline: none;
+  padding: 0.2rem;
+  transition: border-color 0.3s;
+}
+
+.inlineInputM {
+  display: block;
+  width: 100%;
+  min-height: 120px;
+  resize: vertical;
+  background: rgba(240, 240, 240, 0.5);
+  color: #fff;
+  font-family: 'Geist';
+  font-size: 1.05rem;
+  border-radius: 0%;
+  border: none;
+  outline: none;
+  padding: 0.2rem;
+  transition: border-color 0.3s;
+}
+
+.inlineInputN::placeholder {
+  color: #fff 60%;
+}
+
+.inlineInputE::placeholder {
+  color: #fff 60%;
+}
+
+.inlineInputM::placeholder {
+  color: #fff 60%;
+}
+
+.inlineInput:focus {
+  outline: none;
+  border-color: #fff;
+}
+
+.email-form textarea {
+  width: 100%;
+  min-height: 120px;
+  resize: vertical;
+  border: none;
+  outline: none;
+  padding: 0.8rem;
+  font-size: 1.05rem;
+  color: #fff;
+  transition: background 0.3s ease;
+}
+
+.email-form textarea:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.send-container {
+  display: flex;
+  justify-content: flex-end;
+  justify-self: right;
+  align-self: right;
+}
+
+.sendButton:hover {
+  background: #2593f9;
+}

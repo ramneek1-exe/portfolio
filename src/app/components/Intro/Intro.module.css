@@ -1,0 +1,18 @@
+.intro {
+    width: 952px;
+    position: relative;
+    left: 20px;
+    margin-bottom: 100px;
+    font-size: 40px;
+    font-family: 'Geist';
+    font-weight: 300;
+    color: #e8e7e3;
+    text-align: left;
+    display: inline-block;
+}
+
+.italics {
+    font-family: 'Benton Modern Display', serif;
+    font-style: italic;
+    font-weight: 400;
+}

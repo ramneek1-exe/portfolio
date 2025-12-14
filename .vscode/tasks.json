@@ -1,0 +1,27 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Next.js Dev",
+      "type": "shell",
+      "command": "npm run dev",
+      "group": "build",
+      "isBackground": true,
+      "problemMatcher": [
+        {
+          "pattern": {
+            "regexp": ".*",
+            "file": 1,
+            "location": 2,
+            "message": 0
+          },
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": ".*ready - started server.*",
+            "endsPattern": ".*compiled successfully.*"
+          }
+        }
+      ]
+    }
+  ]
+}

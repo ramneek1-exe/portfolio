@@ -1,0 +1,138 @@
+.programDevelopmentAssistant {
+    position: relative;
+    font-weight: 600;
+    white-space: pre-wrap;
+}
+
+.may2025 {
+    position: relative;
+    font-weight: 600;
+    white-space: pre-wrap;
+}
+
+.governmentOfAlberta {
+    width: 470.5px;
+    position: relative;
+    font-size: 28.81px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    min-width: 470.49px;
+}
+
+.albertaGovernmentLogo2svg1Icon {
+    width: 161.6px;
+    position: relative;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.imPartOf {
+    width: 814.6px;
+    position: relative;
+    font-size: 25.6px;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.we1 {
+    align-self: stretch;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 32px 227.2px;
+}
+
+.governmentOfAlberta1 {
+    width: 429.7px;
+    position: relative;
+    font-size: 28.81px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    min-width: 429.68px;
+}
+
+.we2 {
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 32px 278.5px;
+}
+
+.summerStudent {
+    width: 297.7px;
+    position: relative;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    min-width: 297.66px;
+}
+
+.governmentOfAlberta2 {
+    position: relative;
+    font-size: 28.81px;
+    font-weight: 500;
+    display: inline-block;
+    min-width: 298.46px;
+}
+
+.workingInThe {
+    width: 814.6px;
+    position: relative;
+    font-size: 25.6px;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    height: 295.3px;
+    flex-shrink: 0;
+}
+
+.we3 {
+    align-self: stretch;
+    height: 434.3px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 29px 402.5px;
+}
+
+.workExperience {
+    position: relative;
+    width: 100%;
+    left: 20px;
+    margin-bottom: 100px;;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 85px;
+    text-align: left;
+    font-size: 32.01px;
+    color: #e8e7e3;
+    font-family: 'Geist';
+    font-weight: 300;
+}
+
+.italics {
+    font-family: 'Benton Modern Display', serif;
+    font-style: italic;
+    font-weight: 400;
+}

@@ -1,0 +1,31 @@
+.projects {
+    align-self: stretch;
+    position: relative;
+    font-weight: 600;
+    font-family: 'Geist';
+}
+
+.workInProgress {
+    align-self: stretch;
+    position: relative;
+    font-size: 46px;
+    font-weight: 300;
+    font-family: 'Benton Modern Display', serif;
+    font-style: italic;
+}
+
+.projectsHeader {
+    width: 100%;
+    left: 20px;
+    margin-bottom: 200px;;
+    position: relative;
+    height: 152px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 5px;
+    text-align: left;
+    font-size: 70px;
+    color: #e8e7e3;
+}

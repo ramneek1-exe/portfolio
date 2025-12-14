@@ -1,0 +1,33 @@
+.thingsIWork {
+    align-self: stretch;
+    position: relative;
+    font-weight: 600;
+}
+
+.toMakeMagic {
+    align-self: stretch;
+    position: relative;
+    font-size: 48.43px;
+    display: flex;
+    font-weight: 300;
+    font-family: 'Bento Modern Display', serif;
+    font-style: italic;
+    align-items: center;
+    height: 46.3px;
+    flex-shrink: 0;
+}
+
+.bentoHeader {
+    width: 100%;
+    left: 20px;
+    margin-bottom: 70px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+    font-size: 73.71px;
+    color: #e8e7e3;
+    font-family: 'Geist';
+}

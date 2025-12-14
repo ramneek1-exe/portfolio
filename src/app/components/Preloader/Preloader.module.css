@@ -1,0 +1,117 @@
+/* src/app/components/Preloader/Preloader.module.css */
+
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: all;
+    /* REMOVED background-color here! */
+}
+
+/* Mask Layer */
+.overlaySvg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    will-change: transform;
+}
+
+/* 1. The STATIC White Core (80px) */
+.starCore {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px; 
+    height: 80px;
+    transform: translate(-50%, -50%);
+    color: #ffffff; 
+    z-index: 3;
+    overflow: visible;
+    will-change: transform, opacity;
+}
+
+/* 2. The PULSING Glow */
+.starGlow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px;
+    height: 80px;
+    transform: translate(-50%, -50%);
+    color: #04D9FF; 
+    z-index: 2;
+    mix-blend-mode: screen; 
+    
+    filter: 
+        blur(8px) 
+        drop-shadow(0 0 15px rgba(4, 217, 255, 0.8))
+        drop-shadow(0 0 40px rgba(10, 39, 177, 0.6))
+        drop-shadow(0 0 80px rgba(15, 1, 69, 0.5));
+        
+    will-change: transform, opacity;
+    opacity: 0.9; 
+}
+
+/* Progress Bar */
+.progressWrapper {
+    position: absolute;
+    right: 40px;
+    bottom: 40px;
+    width: 3px;
+    height: 700px; /* <--- UPDATED HEIGHT */
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    z-index: 4;
+}
+
+.progressBar {
+    width: 100%;
+    height: 0%;
+    /* Initial color (Deepest Purple) */
+    background: #0F0145; 
+    /* We animate the box-shadow color inline as well */
+    box-shadow: 0 0 15px currentColor;
+}
+
+.percentage {
+    position: absolute;
+    right: 55px;
+    bottom: 40px;
+    font-family: 'Geist', monospace;
+    font-size: 1.5rem;
+    font-variant-numeric: tabular-nums;
+    color: #e8e7e3;
+    z-index: 4;
+}
+
+.npmContainer {
+    position: absolute;
+    top: 654.62px;
+    left: 50px;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    text-align: left;
+}
+
+.npmText {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1rem;
+    color: white;
+    letter-spacing: 0.02em;
+    min-height: 1.5em;
+    margin: 0;
+    white-space: pre-wrap;
+}
