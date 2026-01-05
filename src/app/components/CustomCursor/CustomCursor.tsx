@@ -7,7 +7,6 @@ const CustomCursor = () => {
   const cursorRef = useRef<HTMLSpanElement>(null);
   const followerRef = useRef<HTMLSpanElement>(null);
 
-  // 1. Mouse Movement Logic
   useGSAP(() => {
     const cursor = cursorRef.current;
     const follower = followerRef.current;
@@ -15,7 +14,6 @@ const CustomCursor = () => {
 
     gsap.set([cursor, follower], { xPercent: -50, yPercent: -50 });
 
-    // USE QUICKSETTER (Performance Win)
     const setCursorX = gsap.quickSetter(cursor, "x", "px");
     const setCursorY = gsap.quickSetter(cursor, "y", "px");
     const setFollowerX = gsap.quickSetter(follower, "x", "px");
@@ -35,7 +33,6 @@ const CustomCursor = () => {
       pos.x += (mouse.x - pos.x) * speed;
       pos.y += (mouse.y - pos.y) * speed;
 
-      // USE SETTERS INSTEAD OF GSAP.SET
       setCursorX(mouse.x);
       setCursorY(mouse.y);
       setFollowerX(pos.x);

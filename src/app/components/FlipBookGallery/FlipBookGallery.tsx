@@ -49,12 +49,10 @@ const FlipBookGallery: React.FC = () => {
     const [imageDimensions, setImageDimensions] = useState<Record<number, { width: number; height: number }>>({});
     const singleNoteRef = useRef<HTMLDivElement>(null);
 
-    // --- DATA ---
     const destinations: Destination[] = [
         {
             id: 1,
             title: "Canadian Rockies",
-            // Fixed: High-quality mountain cover image
             coverImage: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=800&auto=format&fit=crop", 
             pages: [
                 {
@@ -142,7 +140,6 @@ const FlipBookGallery: React.FC = () => {
         {
             id: 2,
             title: "Baja Beaches",
-            // Fixed: High-quality beach cover image
             coverImage: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800&auto=format&fit=crop",
             pages: [
                 {
@@ -229,7 +226,6 @@ const FlipBookGallery: React.FC = () => {
         }
     ];
 
-    // --- LOGIC ---
 
     useEffect(() => {
         if (!selectedDestination) {
@@ -374,7 +370,6 @@ const FlipBookGallery: React.FC = () => {
     const albumsContainerStyle: React.CSSProperties = { maxWidth: '64rem', margin: '0 auto' };
     const albumsGridStyle: React.CSSProperties = { display: 'flex', gap: '2rem', justifyContent: 'center', alignItems: 'center', minHeight: '100px' };
     
-    // Style for the Album Card Container
     const albumCardStyle: React.CSSProperties = {
         position: 'relative', cursor: 'pointer', transform: 'scale(1)', transition: 'transform 0.3s ease',
         borderRadius: '1rem', padding: '2rem', width: '24rem', height: '18rem',
@@ -487,7 +482,6 @@ const FlipBookGallery: React.FC = () => {
                                     borderRadius: 'inherit', zIndex: 0,
                                     backgroundImage: `url(${destination.coverImage})`,
                                     backgroundSize: 'cover', backgroundPosition: 'center',
-                                    // Blur effect logic
                                     filter: hoveredCard === destination.id ? 'blur(0px)' : 'blur(5px)',
                                     transform: hoveredCard === destination.id ? 'scale(1.0)' : 'scale(1.1)',
                                     transition: 'filter 0.5s ease, transform 0.5s ease'

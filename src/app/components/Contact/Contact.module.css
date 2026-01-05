@@ -25,7 +25,6 @@
   margin-bottom: 100px;
 }
 
-/* button base */
 .btn {
   position: relative;
   display: inline-flex;
@@ -60,7 +59,6 @@
   z-index: 3;
 }
 
-/* splash circle */
 .splash {
   position: absolute;
   left: 50%;
@@ -75,7 +73,6 @@
   will-change: left, top, width, height, filter;
 }
 
-/* Email form wrapper */
 .emailFormWrapper {
   margin-top: 1rem;
   padding-left: 23.8vw;
@@ -97,8 +94,6 @@
   width: 400px;
   max-width: 500px;
   color: white;
-  /* margin: 0 auto; */
-  /* transform-origin: top center; */
 }
 
 .emailForm input,

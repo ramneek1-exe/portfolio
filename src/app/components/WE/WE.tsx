@@ -8,10 +8,10 @@ const WE = () => {
       <div className={styles.workExperience}>
           <div className={styles.we1}>
               <div className={styles.programDevelopmentAssistant}>Program Development Assistant</div>
-              <div className={styles.may2025}>May 2025 - Present</div>
+              <div className={styles.may2025}>May 2025 - Dec 2025</div>
               <div className={styles.governmentOfAlberta}>Government of Alberta</div>
               <Image className={styles.albertaGovernmentLogo2svg1Icon} width={161.6} height={61.7} sizes="100vw" alt="" src={GoA_Logo} />
-              <div className={styles.imPartOf}><p>I’m part of a cross-functional team building a new Case Management System - TENET - for the <span className={styles.italics}>Ministry of Jobs, Economy, Trade, and Immigration.</span> Upon release this software will be used by teams province-wide as part of a shift from existing legacy systems. I work closely with <span className={styles.italics}>developers, designers, QA devs, & project leads</span> to track issues, refine features, and support product decisions. Most of my day involves digging into feedback, writing test scenarios, and exploring ways to improve both usability and system performance by <span className={styles.italics}>collaborating</span> with team members and users from external organizations.</p></div>
+              <div className={styles.imPartOf}><p>I was part of a cross-functional team building a new Case Management System - TENET - for the <span className={styles.italics}>Ministry of Jobs, Economy, Trade, and Immigration.</span> Upon release this software will be used by teams province-wide as part of a shift from existing legacy systems. I worked closely with <span className={styles.italics}>developers, designers, QA devs, & project leads</span> to track issues, refine features, and support product decisions. Most of my day involved digging into feedback, writing test scenarios, and exploring ways to improve both usability and system performance by <span className={styles.italics}>collaborating</span> with team members and users from external organizations.</p></div>
           </div>
           <div className={styles.we2}>
               <div className={styles.programDevelopmentAssistant}>Software Solutions Specialist</div>

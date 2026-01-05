@@ -8,21 +8,18 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 export default function SmoothScroller({ children }: { children: React.ReactNode }) {
   useLayoutEffect(() => {
-    // 1. SAFETY: Kill any existing ScrollSmoother instances to prevent duplicates
     const smoother = ScrollSmoother.get();
     if (smoother) {
       smoother.kill();
     }
 
-    // 2. Create a fresh instance
     ScrollSmoother.create({
-      smooth: 1.5, // Adjust your smoothness
+      smooth: 1.5,
       effects: true,
-      normalizeScroll: false, // Helps with touch devices/jitter
+      normalizeScroll: false,
       ignoreMobileResize: true,
     });
     return () => {
-      // 3. Cleanup on unmount
       const smoother = ScrollSmoother.get();
       if (smoother) {
         smoother.kill();

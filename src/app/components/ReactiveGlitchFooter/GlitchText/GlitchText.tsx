@@ -21,16 +21,13 @@ export default function GlitchText({
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    // 1. Initialize WebGL
     const gl = (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')) as WebGLRenderingContext | null;
     if (!gl) {
       console.error('WebGL not supported');
       return;
     }
 
-    // 2. Resize Handler
     const resizeCanvas = () => {
-      // Cap DPR at 2 for performance on high-res screens
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = 700 * dpr;
       canvas.height = 400 * dpr;
@@ -38,7 +35,6 @@ export default function GlitchText({
     };
     resizeCanvas();
 
-    // --- SHADERS ---
     const vertexShaderSource = `
       attribute vec2 a_position;
       attribute vec2 a_texCoord;
@@ -105,7 +101,6 @@ export default function GlitchText({
         vec3 color = vec3(r, g, b);
         float textMask = max(max(r, g), b);
         
-        // Bloom
         vec3 bloomAccum = vec3(0.0);
         float bloomRadius = u_bloom * 0.012;
         for(int i = 0; i < 8; i++) {
@@ -117,7 +112,6 @@ export default function GlitchText({
         }
         color += bloomAccum * 0.8 / 8.0;
         
-        // Scanlines & Noise
         float scanlineFreq = u_resolution.y * 0.7;
         float scanlinePattern = sin(uv.y * scanlineFreq + u_time * 0.1);
         color *= mix(1.0, pow((scanlinePattern * 0.5 + 0.5), 0.4), u_scanlines);
@@ -155,7 +149,6 @@ export default function GlitchText({
     if (!gl.getProgramParameter(program, gl.LINK_STATUS)) return;
     gl.useProgram(program);
 
-    // Buffers
     const positions = new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]);
     const texCoords = new Float32Array([0, 1, 1, 1, 0, 0, 1, 0]);
 
@@ -173,7 +166,6 @@ export default function GlitchText({
     gl.enableVertexAttribArray(texCoordLocation);
     gl.vertexAttribPointer(texCoordLocation, 2, gl.FLOAT, false, 0, 0);
 
-    // Uniforms
     const timeLocation = gl.getUniformLocation(program, 'u_time');
     const resolutionLocation = gl.getUniformLocation(program, 'u_resolution');
     const aberrationLocation = gl.getUniformLocation(program, 'u_aberration');
@@ -182,7 +174,6 @@ export default function GlitchText({
     const scanlinesLocation = gl.getUniformLocation(program, 'u_scanlines');
     const brightnessLocation = gl.getUniformLocation(program, 'u_brightness');
 
-    // Text Texture
     const createTextTexture = (text: string) => {
       const textCanvas = document.createElement('canvas');
       textCanvas.width = 2048;
@@ -214,7 +205,6 @@ export default function GlitchText({
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
 
-    // --- RENDER LOOP WITH VISIBILITY CHECK ---
     const startTime = Date.now();
     let animationId: number;
     let isVisible = false; // Start invisible, ScrollTrigger will enable
@@ -236,7 +226,6 @@ export default function GlitchText({
       animationId = requestAnimationFrame(render);
     };
 
-    // --- PAUSE WHEN SCROLLED AWAY ---
     const trigger = ScrollTrigger.create({
       trigger: canvas,
       start: "top bottom", // When top of text hits bottom of screen
@@ -247,7 +236,6 @@ export default function GlitchText({
       },
       onLeave: () => {
         isVisible = false;
-        // Optionally cancel loop here, but boolean check is safer/faster
       },
       onEnterBack: () => {
         isVisible = true;
@@ -261,13 +249,11 @@ export default function GlitchText({
     const handleResize = () => resizeCanvas();
     window.addEventListener('resize', handleResize);
 
-    // --- CLEANUP ---
     return () => {
       window.removeEventListener('resize', handleResize);
       cancelAnimationFrame(animationId);
       trigger.kill();
 
-      // IMPORTANT: Free GPU memory
       gl.deleteProgram(program);
       gl.deleteShader(vertexShader);
       gl.deleteShader(fragmentShader);

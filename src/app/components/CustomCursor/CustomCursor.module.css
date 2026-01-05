@@ -1,17 +1,9 @@
 .custom-follower {
   width: 45px;
   height: 45px;
-  /* --- REMOVE THESE LINES --- */
-  /* backdrop-filter: blur(12px); */
-  /* -webkit-backdrop-filter: blur(12px); */
-  /* background: rgba(255, 255, 255, 0.12); */
-  /* backdrop-filter: saturate(180%) blur(6px); */
-  /* -------------------------- */
   
-  /* --- REPLACE WITH THIS (High Performance) --- */
-  background: rgba(255, 255, 255, 0.1); /* Simple transparency */
+  background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  /* ------------------------------------------- */
 
   position: fixed;
   top: 0;
@@ -21,5 +13,5 @@
   transform: translate(-50%, -50%);
   z-index: 9998;
   transition: all 0.2s ease;
-  will-change: transform; /* Keep this */
+  will-change: transform;
 }

@@ -8,12 +8,10 @@ const Bento = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const bentoBoxRef = useRef<HTMLDivElement | null>(null); 
   
-  // Refs to store GSAP instances for safe cleanup
   const stRef = useRef<ScrollTrigger | null>(null);
   const animRef = useRef<gsap.core.Tween | null>(null);
 
   useLayoutEffect(() => {
-    // 1. Configure GSAP
     gsap.config({
       force3D: true,
       nullTargetWarn: false,
@@ -22,18 +20,12 @@ const Bento = () => {
     const ctx = gsap.context(() => {
       const boxes = gsap.utils.toArray(`.${styles.frameParent} > div`, bentoBoxRef.current) as HTMLElement[];
       
-      // 2. INITIAL SETUP
       gsap.set(boxes, {
         x: 200,
         opacity: 0,
         force3D: true,
-        // --- PERFORMANCE FIX: REMOVED willChange ---
-        // We removed 'willChange: "transform, opacity"' to prevent 
-        // the "Layer Explosion" that was blocking your main thread.
-        // -------------------------------------------
       });
       
-      // 3. Create the animation and store it
       animRef.current = gsap.to(
         boxes,
         {
@@ -50,7 +42,6 @@ const Bento = () => {
         }
       );
 
-      // 4. Create the ScrollTrigger and store it
       stRef.current = ScrollTrigger.create({
         trigger: containerRef.current, 
         start: "top 60%", 
@@ -61,9 +52,6 @@ const Bento = () => {
     }, bentoBoxRef); 
 
     return () => {
-      // --- STABILITY FIX: ROBUST CLEANUP ---
-      // We manually kill the instances *before* reverting the context.
-      // This prevents the "removeChild" error during Fast Refresh.
       if (stRef.current) {
         stRef.current.kill();
         stRef.current = null;

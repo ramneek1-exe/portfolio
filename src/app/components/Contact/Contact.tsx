@@ -18,7 +18,6 @@ const Contact: React.FC = () => {
     if (el) buttonsRef.current[idx] = el;
   };
 
-  // ✨ Fix z-index of button labels + keep your glow animation
   useEffect(() => {
     const cleanups: (() => void)[] = [];
 
@@ -28,7 +27,6 @@ const Contact: React.FC = () => {
       const label = btn.querySelector<HTMLElement>('.btnLabel');
       if (!splash || !label) return;
 
-      // ensure label is always above splash
       label.style.zIndex = '3';
       btn.style.zIndex = '2';
       splash.style.zIndex = '1';
@@ -112,7 +110,6 @@ const Contact: React.FC = () => {
     return () => cleanups.forEach((fn) => fn());
   }, []);
 
-  // ✉️ handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('Sending...');
@@ -140,7 +137,6 @@ const Contact: React.FC = () => {
     }
   };
 
-  // 🌀 toggle with GSAP swoosh-in
   const toggleForm = () => {
     setIsFormOpen((prev) => {
       const newState = !prev;
@@ -205,7 +201,6 @@ const Contact: React.FC = () => {
         ))}
       </ul>
 
-      {/* ✉️ Expanding form */}
       <div ref={formWrapperRef} className={styles.emailFormWrapper} style={{ display: 'none' }}>
         <form onSubmit={handleSubmit} className={styles.emailForm}>
           <p>

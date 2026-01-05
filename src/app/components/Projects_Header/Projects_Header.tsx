@@ -1,5 +1,4 @@
 'use client';
-// 1. Import useLayoutEffect
 import React, { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -8,12 +7,10 @@ import styles from './Projects_Header.module.css';
 gsap.registerPlugin(ScrollTrigger); 
 
 const Projects_Header = () => {
-  // 2. Add a ref for the main container
   const mainRef = useRef(null); 
   const projectsRef = useRef(null);
   const workRef = useRef(null);
 
-  // Helper function (no changes)
   const splitText = (element: HTMLElement) => {
     const text = element.innerText;
     element.innerHTML = '';
@@ -26,10 +23,8 @@ const Projects_Header = () => {
     return chars;
   };
 
-  // 3. Change useEffect to useLayoutEffect
   useLayoutEffect(() => {
     
-    // 4. Create a GSAP context scoped to the main container
     const ctx = gsap.context(() => {
       
       const animateText = (el: HTMLElement | null) => {
@@ -53,14 +48,11 @@ const Projects_Header = () => {
       animateText(projectsRef.current);
       animateText(workRef.current);
 
-    }, mainRef); // <-- Scope the context here
+    }, mainRef);
 
-    // 5. The cleanup is now safe and simple
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
       
-      // --- DEFENSIVE FIX ---
-      // Only kill tweens if the element still exists
       if (projectsRef.current) {
         gsap.killTweensOf(projectsRef.current);
       }
@@ -70,13 +62,12 @@ const Projects_Header = () => {
     };
   }, []);
   return (
-    // 6. Apply the main ref to the component's root element
     <div ref={mainRef} className={styles.projectsHeader}>
       <div ref={projectsRef} className={styles.projects}>
         Projects
       </div>
       <i ref={workRef} className={styles.workInProgress}>
-        Work in progress... Until then, enjoy my portfolio!
+        Work in progress... Until then, enjoy some of my pictures!
       </i>
     </div>
   );

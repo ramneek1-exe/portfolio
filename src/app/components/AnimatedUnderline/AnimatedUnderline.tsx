@@ -1,62 +1,50 @@
 "use client";
 import React, { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
-import styles from "./AnimatedUnderline.module.css"; // Import CSS Module
+import styles from "./AnimatedUnderline.module.css";
 
 interface AnimatedUnderlineProps {
   text: string;
-  pathD?: string; // Optional prop for custom path
+  pathD?: string;
 }
 
 const AnimatedUnderline: React.FC<AnimatedUnderlineProps> = ({
   text,
-  pathD = "M0.218399 54.0566C57.8851 26.0566 210.018 -21.5434 357.218 12.0566", // Curve path
+  pathD = "M0.218399 54.0566C57.8851 26.0566 210.018 -21.5434 357.218 12.0566",
 
 }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  // --- REMOVE ballRef ---
-  // const ballRef = useRef<SVGCircleElement | null>(null);
   const gradientRef = useRef<SVGLinearGradientElement | null>(null);
   const pathRef = useRef<SVGPathElement | null>(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
 
-      // --- NEW: Separate looping animation for the gradient ---
       const gradientLoop = gsap.to(gradientRef.current, {
-        attr: { gradientTransform: "translate(2,0)" }, // Move further for loop
-        duration: 3, // Speed of the loop
+        attr: { gradientTransform: "translate(2,0)" },
+        duration: 3,
         ease: "sine.inOut",
-        repeat: -1, // Loop infinitely
-        yoyo: true, // Go back and forth
-        paused: true, // Start paused
+        repeat: -1,
+        yoyo: true,
+        paused: true,
       });
-      // --- END NEW ---
 
-      // Timeline for the initial draw-in animation
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 85%",
           toggleActions: "play none none none",
-          // --- NEW: Control the gradient loop ---
-          onEnter: () => gradientLoop.play(), // Play loop when in view
-          onLeaveBack: () => gradientLoop.pause(), // Pause if scrolling back up past start
-          // Optional: Pause when scrolling completely out of view
-          // onLeave: () => gradientLoop.pause(),
-          // onEnterBack: () => gradientLoop.play(),
-          // --- END NEW ---
+          onEnter: () => gradientLoop.play(),
+          onLeaveBack: () => gradientLoop.pause(),
         },
       });
 
-      // Gradient shift during draw-in
       tl.to(
         gradientRef.current,
         { attr: { gradientTransform: "translate(1,0)" }, ease: "power1.inOut", duration: 1.5 },
         0
       );
 
-      // Line drawing (as before)
       tl.fromTo(
         pathRef.current!,
         { drawSVG: "0%", autoAlpha: 0 },
@@ -64,12 +52,6 @@ const AnimatedUnderline: React.FC<AnimatedUnderlineProps> = ({
         0
       );
 
-      // --- REMOVE ball animation ---
-      // tl.to(
-      //   ballRef.current,
-      //   { /* ... ball animation config ... */ },
-      //   0
-      // );
 
     }, containerRef);
 
@@ -82,7 +64,7 @@ const AnimatedUnderline: React.FC<AnimatedUnderlineProps> = ({
       <p className={styles.text}>{text}</p>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 100 25" // Keep curve viewBox
+        viewBox="0 0 100 25"
         className={styles.svg}
         preserveAspectRatio="none"
       >

@@ -15,13 +15,10 @@ interface LogoProps {
 export default function Logo({ className, width = 420, height = 219 }: LogoProps) {
     const containerRef = useRef<HTMLDivElement>(null)
     
-    // Refs for animation control
     const rendererRef = useRef<any>(null);
     const animationIdRef = useRef<number | null>(null);
     const isAnimatingRef = useRef(true); // Start true since it's in the Hero
 
-    // We use a SINGLE useLayoutEffect to handle setup, animation, and scroll triggering
-    // This prevents "ReferenceError" bugs by keeping everything in the same scope.
     useLayoutEffect(() => {
         const THREE = (window as any).THREE;
         if (!THREE) {
@@ -32,7 +29,6 @@ export default function Logo({ className, width = 420, height = 219 }: LogoProps
 
         const currentContainer = containerRef.current;
 
-        // 1. Setup THREE.js Scene
         const scene = new THREE.Scene()
         const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000)
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance" })
@@ -48,7 +44,6 @@ export default function Logo({ className, width = 420, height = 219 }: LogoProps
 
         camera.position.z = 2.5
 
-        // 2. Setup Mouse Interaction
         const mouse = new THREE.Vector2()
         let mouseWorldPos = new THREE.Vector3(999, 999, 0)
         let isMouseInside = false
@@ -73,7 +68,6 @@ export default function Logo({ className, width = 420, height = 219 }: LogoProps
         currentContainer.addEventListener('mousemove', updateMouse)
         currentContainer.addEventListener('mouseleave', handleMouseLeave)
 
-        // 3. Create Textures & Tiles (Your existing logic)
         function createLogoTexture() {
           const scale = 2;
           const canvas = document.createElement('canvas');
@@ -183,9 +177,7 @@ export default function Logo({ className, width = 420, height = 219 }: LogoProps
             }
         }
 
-        // 4. Define the Animation Loop
         const animate = () => {
-            // Stop if paused
             if (!isAnimatingRef.current) {
                 animationIdRef.current = null;
                 return;
@@ -233,8 +225,6 @@ export default function Logo({ className, width = 420, height = 219 }: LogoProps
             renderer.render(scene, camera);
         }
 
-        // 5. Create ScrollTrigger to Pause/Play
-        // This is the performance fix!
         const trigger = ScrollTrigger.create({
             trigger: currentContainer,
             start: "top bottom", 
@@ -252,17 +242,12 @@ export default function Logo({ className, width = 420, height = 219 }: LogoProps
             },
             onLeaveBack: () => {
                 isAnimatingRef.current = false; // Pause when scrolling back up past it? 
-                // Actually, if it's the hero, we probably want it to stay playing at the very top.
-                // But if we scroll UP past the hero (negative scroll?), it's effectively off screen.
-                // Standard behavior: pause when off screen.
                 isAnimatingRef.current = false; 
             }
         });
 
-        // Start animation initially
         animate();
 
-        // 6. Cleanup
         return () => {
             trigger.kill(); // Kill ScrollTrigger
             isAnimatingRef.current = false; // Stop loop
@@ -272,14 +257,12 @@ export default function Logo({ className, width = 420, height = 219 }: LogoProps
             currentContainer.removeEventListener('mouseleave', handleMouseLeave);
             
             if (rendererRef.current) {
-                // Remove canvas if it's still attached
                 if (currentContainer.contains(rendererRef.current.domElement)) {
                     currentContainer.removeChild(rendererRef.current.domElement);
                 }
                 rendererRef.current.dispose();
             }
 
-            // Dispose THREE resources
             scene.traverse((object: any) => {
               if (object.geometry) object.geometry.dispose();
               if (object.material) {

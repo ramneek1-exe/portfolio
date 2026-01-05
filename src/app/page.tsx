@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 
 import styles from "./page.module.css";
 
-import { useState, useEffect } from "react"; // <--- Import hooks
+import { useState, useEffect } from "react";
 
 import Hero from "./components/Hero/Hero";
 import Intro from "./components/Intro/Intro";
@@ -31,15 +31,11 @@ export default function Home() {
     }
   );
 
-  // 1. STATE FOR LOADING
   const [isLoading, setIsLoading] = useState(true);
 
-  // 2. LOCK SCROLL WHILE LOADING
   useEffect(() => {
     if (isLoading) {
       document.body.style.overflow = 'hidden';
-      // If using Lenis/ScrollSmoother, they usually respect overflow:hidden on body, 
-      // but sometimes you might need window.scrollTo(0,0) to ensure we start at top.
       window.scrollTo(0,0);
     } else {
       document.body.style.overflow = '';
@@ -48,9 +44,6 @@ export default function Home() {
 
   return (
     <>
-      {/* 3. THE PRELOADER */}
-      {/* We keep it in the DOM until it finishes its internal animation */}
-      {/* Passing handleComplete to unlock scroll */}
       {isLoading && (
          <Preloader onComplete={() => setIsLoading(false)} />
       )}
@@ -71,7 +64,6 @@ export default function Home() {
               <FlipBookGallery />
             <Contact />
               <div style={{ position: 'relative', width: '100%', height: '400px' }}>
-                {/* Background layer */}
                 <div style={{ 
                   position: 'absolute', 
                   inset: 0, 
@@ -86,7 +78,6 @@ export default function Home() {
                   />
                 </div>
 
-                {/* Copyright notice */}
                 <div style={{
                   position: 'absolute',
                   top: '20px',
@@ -101,10 +92,8 @@ export default function Home() {
                   © {new Date().getFullYear()} Ramneek Singh
                 </div>
                 
-                {/* Text layer */}
                 <div style={{ 
                   position: 'absolute', 
-                  // left: '50%',
                   bottom: 0,
                   transform: 'translateY(45%)',
                   inset: 0, 

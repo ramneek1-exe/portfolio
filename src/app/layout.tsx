@@ -24,7 +24,7 @@ const ibmPlexMono = IBM_Plex_Mono({
   display: "swap",
   fallback: ["monospace"],
   subsets: ["latin"],
-  weight: ["400"], 
+  weight: ["400"],
 });
 
 const cormorant = Cormorant_Garamond({
@@ -45,7 +45,6 @@ const spectral = Spectral({
   subsets: ["latin"],
 });
 
-// --- SEO METADATA ---
 export const metadata: Metadata = {
   title: {
     default: "Ramneek Singh | Creative Developer",
@@ -64,7 +63,7 @@ export const metadata: Metadata = {
     siteName: "Ramneek Singh Portfolio",
     images: [
       {
-        url: "/og-image.jpeg", // We need to add this image to your public folder!
+        url: "/og-image.jpeg",
         width: 1200,
         height: 630,
         alt: "Ramneek Singh Portfolio Preview",
@@ -76,7 +75,6 @@ export const metadata: Metadata = {
     title: "Ramneek Singh | Creative Developer",
     description: "Immersive portfolio featuring WebGL, GSAP animations, and interactive design.",
     images: ["/og-image.jpg"],
-    // creator: "@yourhandle", // Optional: Add your Twitter handle if you have one
   },
   robots: {
     index: true,

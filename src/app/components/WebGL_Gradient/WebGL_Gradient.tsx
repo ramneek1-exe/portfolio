@@ -20,7 +20,6 @@ const WebGL_Gradient = () => {
         const canvas = canvasRef.current;
         if (!canvas) return;
 
-        // 1. Force low-power mode
         const gl = canvas.getContext('webgl', { 
             alpha: false, 
             antialias: false,
@@ -30,7 +29,6 @@ const WebGL_Gradient = () => {
         
         if (!gl) return;
 
-        // 2. Cap resolution at 0.5 (Half Res) for performance
         const resize = () => {
             const dpr = 0.5; 
             canvas.width = window.innerWidth * dpr;
@@ -42,7 +40,6 @@ const WebGL_Gradient = () => {
         resize();
         window.addEventListener('resize', resize);
 
-        // --- SHADER SETUP (Your Original Shader) ---
         const vertexShaderSource = `
           attribute vec2 a_position;
           varying vec2 v_uv;
@@ -121,7 +118,6 @@ const WebGL_Gradient = () => {
         const timeLocation = gl.getUniformLocation(program, 'u_time');
         const scrollLocation = gl.getUniformLocation(program, 'u_scroll');
 
-        // --- RENDER LOOP (Safe GSAP Ticker) ---
         const render = () => {
             if (!isActiveRef.current) return;
 
@@ -134,10 +130,8 @@ const WebGL_Gradient = () => {
             gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
         };
         
-        // Add to ticker (Cannot be duplicated)
         gsap.ticker.add(render);
 
-        // ScrollTrigger to pause when invisible
         const trigger = ScrollTrigger.create({
           trigger: document.body,
           start: 0,
@@ -148,13 +142,11 @@ const WebGL_Gradient = () => {
           onLeaveBack: () => { isActiveRef.current = true; }
         });
 
-        // Cleanup
         return () => {
             window.removeEventListener('resize', resize);
             gsap.ticker.remove(render);
             trigger.kill();
             
-            // Clean WebGL
             gl.deleteProgram(program);
             gl.deleteShader(vertexShader);
             gl.deleteShader(fragmentShader);

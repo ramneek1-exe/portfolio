@@ -19,7 +19,6 @@
     left: 50%;
     transform: scale(.25);
     width: 20vw;
-    /* or use a fixed size like 200px if preferred */
     height: auto;
     z-index: 2;
 }
@@ -69,7 +68,6 @@
     
 }
 
-/* Logo positioning */
 .hero :global(.my-logo-class) {
     z-index: 10;
     align-self: center;

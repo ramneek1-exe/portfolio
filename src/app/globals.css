@@ -156,10 +156,8 @@ body,
   height: 100%;
   overflow-x: hidden;
   background-color: #0d0d0d;
-  /* or visible if you want */
   overflow-y: visible;
   position: relative;
-  /* especially #__next to manage stacking */
 }
 
 
@@ -199,14 +197,11 @@ body {
 
 :root {
 
-  /* Color */
   --color-white: #fff;
   --color-beige: #ede8d0;
 
-  /* Font */
 
 
-  /* FontSize */
   --font-size-20: 20px;
 
 }
@@ -226,7 +221,6 @@ html, body, a {
   z-index: 9999;
 }
 
-/* INNER WHITE DOT */
 .custom-cursor {
   width: 15px;
   height: 15px;
@@ -234,7 +228,6 @@ html, body, a {
   z-index: 10000;
 }
 
-/* OUTER BLURRED DISC */
 .custom-follower {
   width: 45px;
   height: 45px;

@@ -4,28 +4,22 @@ import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import styles from './Intro.module.css';
 
-// Register the plugin
 gsap.registerPlugin(SplitText);
 
 const Intro = () => {
   const textRef = useRef<HTMLDivElement | null>(null);
   const splitRef = useRef<any>(null);
 
-  // Use useLayoutEffect for all DOM manipulation
   useLayoutEffect(() => {
-    // Create a GSAP context for safe cleanup
     const ctx = gsap.context(() => {
-      // Clean up previous instances *if they exist*
       if (splitRef.current) {
         splitRef.current.revert();
       }
 
-      // Create new SplitText instance
       splitRef.current = new SplitText(textRef.current, {
         type: "lines"
       });
 
-      // Create ScrollTrigger animation
       gsap.from(splitRef.current.lines, {
         y: 25,
         opacity: 0,
@@ -40,8 +34,6 @@ const Intro = () => {
       });
     }, textRef); // Scope the context to the component's root
 
-    // We don't need the resize listener because ScrollTrigger.refresh()
-    // will handle it automatically.
 
     return () => {
       ctx.revert(); // This will kill the animation and revert the SplitText

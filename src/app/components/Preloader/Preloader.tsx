@@ -1,4 +1,3 @@
-// src/app/components/Preloader/Preloader.tsx
 'use client';
 
 import React, { useLayoutEffect, useRef } from 'react';
@@ -9,14 +8,7 @@ interface PreloaderProps {
   onComplete: () => void;
 }
 
-// --- HELPER: Color Interpolation ---
-// Maps 0-100 to your WebGL Gradient palette
 const interpolateColor = (progress: number) => {
-    // Colors from your WebGL Shader:
-    // 0%   = Deepest Purple: #0F0145 (rgb(15, 1, 69))
-    // 50%  = Mid Blue:       #0A27B1 (rgb(10, 39, 177))
-    // 100% = Bright Cyan:    #04D9FF (rgb(4, 217, 255))
-    
     const start = { r: 15, g: 1, b: 69 };
     const mid   = { r: 10, g: 39, b: 177 };
     const end   = { r: 4, g: 217, b: 255 };
@@ -24,12 +16,12 @@ const interpolateColor = (progress: number) => {
     let r, g, b;
 
     if (progress <= 50) {
-        const t = progress / 50; // 0 to 1
+        const t = progress / 50;
         r = Math.round(start.r + (mid.r - start.r) * t);
         g = Math.round(start.g + (mid.g - start.g) * t);
         b = Math.round(start.b + (mid.b - start.b) * t);
     } else {
-        const t = (progress - 50) / 50; // 0 to 1
+        const t = (progress - 50) / 50;
         r = Math.round(mid.r + (end.r - mid.r) * t);
         g = Math.round(mid.g + (end.g - mid.g) * t);
         b = Math.round(mid.b + (end.b - mid.b) * t);
@@ -60,7 +52,6 @@ export default function Preloader({ onComplete }: PreloaderProps) {
         }
       });
 
-      // 1. Initial State
       gsap.set([starHoleRef.current, starCoreRef.current, starGlowRef.current], { 
         transformOrigin: "center center", 
         scale: 1, 
@@ -72,16 +63,13 @@ export default function Preloader({ onComplete }: PreloaderProps) {
         y: window.innerHeight / 2 - 40 
       });
 
-      // Set initial bar color
       gsap.set(barRef.current, { 
           backgroundColor: interpolateColor(0),
-          color: interpolateColor(0) // For box-shadow inheritance
+          color: interpolateColor(0)
       });
 
-      // Initial npm text state
       gsap.set([npmCommandRef.current, npmStatusRef.current], { opacity: 1 });
       
-      // Create separate timeline for typing animations (runs independently)
       const typingTl = gsap.timeline();
       const npmText = "npm install --save portfolio";
       const installingText = "Installing............. Done!";
@@ -93,7 +81,6 @@ export default function Preloader({ onComplete }: PreloaderProps) {
         npmStatusRef.current.textContent = "";
       }
       
-      // Typing animations on separate timeline
       typingTl.to(npmCommandRef.current, {
         duration: 1.2,
         ease: "none",
@@ -117,7 +104,6 @@ export default function Preloader({ onComplete }: PreloaderProps) {
         }
       }, 0.8);
 
-      // 2. Random Steps
       let currentProgress = 0;
       const steps = [];
       const numberOfSteps = 4;
@@ -132,24 +118,20 @@ export default function Preloader({ onComplete }: PreloaderProps) {
       }
       steps.push(100);
 
-      // 3. Build Timeline
       steps.forEach((step, index) => {
         const isLast = index === steps.length - 1;
         const duration = Math.random() * (0.8 - 0.4) + 0.4;
         
-        // Calculate color for this step
         const nextColor = interpolateColor(step);
 
-        // Bar Animation (Height + Color)
         tl.to(barRef.current, { 
             height: `${step}%`, 
             backgroundColor: nextColor,
-            color: nextColor, // CSS variable or currentColor usage
+            color: nextColor,
             duration: duration, 
             ease: "power2.inOut" 
         }, index === 0 ? 0 : ">");
 
-        // Text Counter
         tl.to(percentRef.current, {
           innerText: step,
           duration: duration,
@@ -160,7 +142,6 @@ export default function Preloader({ onComplete }: PreloaderProps) {
           }
         }, "<");
 
-        // Glow Pulse
         tl.to(starGlowRef.current, {
           scale: 1.5, 
           opacity: 0.5, 
@@ -173,17 +154,14 @@ export default function Preloader({ onComplete }: PreloaderProps) {
         if (!isLast) tl.to({}, { duration: 0.1 + Math.random() * 0.3 });
       });
 
-      // 4. Reveal Sequence
       tl.addLabel("reveal");
 
-      // Fade out Bar & Text & npm text
       tl.to([percentRef.current, wrapperRef.current, npmCommandRef.current, npmStatusRef.current], {
         opacity: 0,
         duration: 0.4,
         ease: "power2.out"
       }, "reveal+=0.1");
 
-      // Kill Glow
       tl.to(starGlowRef.current, {
         opacity: 0,
         scale: 2,
@@ -191,25 +169,21 @@ export default function Preloader({ onComplete }: PreloaderProps) {
         ease: "power2.out"
       }, "reveal");
 
-      // Expand Geometry
       const maxDimension = Math.max(window.innerWidth, window.innerHeight);
       const scaleFactor = (maxDimension / 80) * 6; 
 
-      // Expand Mask
       tl.to(starHoleRef.current, {
         scale: scaleFactor,
         duration: 1.8,
         ease: "power4.inOut",
       }, "reveal+=0.2");
 
-      // Expand Core
       tl.to(starCoreRef.current, {
         scale: scaleFactor,
         duration: 1.8,
         ease: "power4.inOut"
       }, "reveal+=0.2");
       
-      // Fade out Core
       tl.to(starCoreRef.current, {
         opacity: 0,
         duration: 0.8,

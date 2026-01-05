@@ -12,12 +12,10 @@ const Bento_Header = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
-    // 1. Manually hint the browser about incoming heavy filters
     if (firstTextRef.current) firstTextRef.current.style.willChange = "opacity, filter, transform";
     if (secondTextRef.current) secondTextRef.current.style.willChange = "opacity, filter, transform";
 
     const ctx = gsap.context(() => {
-      // 2. Initial State with Blur
       if (firstTextRef.current) {
         gsap.set(firstTextRef.current, {
           opacity: 0,
@@ -36,7 +34,6 @@ const Bento_Header = () => {
         });
       }
 
-      // 3. Animate (Blur 2px -> 0.3px)
       if (firstTextRef.current) {
         gsap.to(firstTextRef.current, {
           opacity: 1,
