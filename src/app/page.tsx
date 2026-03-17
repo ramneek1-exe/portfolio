@@ -5,6 +5,8 @@ import dynamic from "next/dynamic";
 import styles from "./page.module.css";
 
 import { useState, useEffect } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import Hero from "./components/Hero/Hero";
 import Intro from "./components/Intro/Intro";
@@ -44,6 +46,9 @@ export default function Home() {
       window.scrollTo(0,0);
     } else {
       document.body.style.overflow = '';
+      gsap.registerPlugin(ScrollTrigger);
+      const timer = setTimeout(() => ScrollTrigger.refresh(), 300);
+      return () => clearTimeout(timer);
     }
   }, [isLoading]);
 
