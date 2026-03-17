@@ -12,6 +12,9 @@ const Bento = () => {
   const animRef = useRef<gsap.core.Tween | null>(null);
 
   useLayoutEffect(() => {
+    const isTouch = window.matchMedia('(pointer: coarse)').matches;
+    if (isTouch) return;
+
     gsap.config({
       force3D: true,
       nullTargetWarn: false,
@@ -19,7 +22,7 @@ const Bento = () => {
 
     const ctx = gsap.context(() => {
       const boxes = gsap.utils.toArray(`.${styles.bentoRow} > div`, bentoBoxRef.current) as HTMLElement[];
-      
+
       gsap.set(boxes, {
         x: 200,
         opacity: 0,

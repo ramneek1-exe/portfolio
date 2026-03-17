@@ -15,6 +15,8 @@ const Projects = () => {
   const comingSoonCardRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+
     const cards = [deadlinerCardRef.current, comingSoonCardRef.current].filter(Boolean);
 
     gsap.set(cards, { opacity: 0, y: 50 });

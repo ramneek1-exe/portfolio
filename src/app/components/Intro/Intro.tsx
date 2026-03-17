@@ -11,6 +11,9 @@ const Intro = () => {
   const splitRef = useRef<any>(null);
 
   useLayoutEffect(() => {
+    const isTouch = window.matchMedia('(pointer: coarse)').matches;
+    if (isTouch) return;
+
     const ctx = gsap.context(() => {
       if (splitRef.current) {
         splitRef.current.revert();
