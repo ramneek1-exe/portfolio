@@ -1,5 +1,5 @@
 "use client";
-import React, { useLayoutEffect, useRef, useState, useEffect } from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import styles from "./AnimatedUnderline.module.css";
 
@@ -16,13 +16,9 @@ const AnimatedUnderline: React.FC<AnimatedUnderlineProps> = ({
   const containerRef = useRef<HTMLDivElement | null>(null);
   const gradientRef = useRef<SVGLinearGradientElement | null>(null);
   const pathRef = useRef<SVGPathElement | null>(null);
-  const [isTouch, setIsTouch] = useState(false);
-
-  useEffect(() => {
-    setIsTouch(window.matchMedia('(pointer: coarse)').matches);
-  }, []);
 
   useLayoutEffect(() => {
+    const isTouch = window.matchMedia('(pointer: coarse)').matches;
     if (isTouch) return;
 
     const ctx = gsap.context(() => {
@@ -64,7 +60,7 @@ const AnimatedUnderline: React.FC<AnimatedUnderlineProps> = ({
 
     return () => ctx.revert();
 
-  }, [pathD, isTouch]);
+  }, [pathD]);
 
   return (
     <div ref={containerRef} className={styles.container}>
@@ -95,7 +91,7 @@ const AnimatedUnderline: React.FC<AnimatedUnderlineProps> = ({
         </defs>
         <path
           ref={pathRef}
-          style={{ visibility: isTouch ? "visible" : "hidden" }}
+          style={{ visibility: "visible" }}
           className={styles.line}
           d={pathD}
           stroke="url(#underlineGradient)"

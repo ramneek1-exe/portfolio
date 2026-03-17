@@ -12,6 +12,9 @@ const Bento_Header = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
+    const isTouch = window.matchMedia('(pointer: coarse)').matches;
+    if (isTouch) return;
+
     if (firstTextRef.current) firstTextRef.current.style.willChange = "opacity, filter, transform";
     if (secondTextRef.current) secondTextRef.current.style.willChange = "opacity, filter, transform";
 
