@@ -1,85 +1,81 @@
 .programDevelopmentAssistant {
     position: relative;
     font-weight: 600;
-    white-space: pre-wrap;
+    white-space: nowrap;
 }
 
 .may2025 {
     position: relative;
     font-weight: 600;
-    white-space: pre-wrap;
+    white-space: nowrap;
 }
 
 .governmentOfAlberta {
-    width: 470.5px;
+    width: auto;
     position: relative;
     font-size: 28.81px;
     font-weight: 500;
     display: flex;
     align-items: center;
     flex-shrink: 0;
-    min-width: 470.49px;
+    min-width: 0;
 }
 
 .albertaGovernmentLogo2svg1Icon {
     width: 161.6px;
     position: relative;
     max-height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .imPartOf {
-    width: 814.6px;
+    width: 100%;
+    max-width: 814px;
     position: relative;
     font-size: 25.6px;
     font-weight: 300;
     display: flex;
     align-items: center;
     flex-shrink: 0;
+    height: auto;
 }
 
 .we1 {
     align-self: stretch;
     height: auto;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    gap: 32px 227.2px;
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    column-gap: 60px;
+    row-gap: 10px;
+    align-items: start;
 }
 
 .governmentOfAlberta1 {
-    width: 429.7px;
+    width: auto;
     position: relative;
     font-size: 28.81px;
     font-weight: 500;
     display: flex;
     align-items: center;
     flex-shrink: 0;
-    min-width: 429.68px;
+    min-width: 0;
 }
 
 .we2 {
+    align-self: stretch;
+    width: 100%;
     height: auto;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    gap: 32px 278.5px;
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    column-gap: 60px;
+    row-gap: 10px;
+    align-items: start;
 }
 
 .summerStudent {
-    width: 297.7px;
     position: relative;
     font-weight: 600;
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-    min-width: 297.66px;
+    white-space: nowrap;
 }
 
 .governmentOfAlberta2 {
@@ -87,37 +83,53 @@
     font-size: 28.81px;
     font-weight: 500;
     display: inline-block;
-    min-width: 298.46px;
+    min-width: 0;
 }
 
 .workingInThe {
-    width: 814.6px;
+    width: 100%;
+    max-width: 814px;
     position: relative;
     font-size: 25.6px;
     font-weight: 300;
     display: flex;
     align-items: center;
-    height: 295.3px;
+    height: auto;
     flex-shrink: 0;
 }
 
 .we3 {
     align-self: stretch;
-    height: 434.3px;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    gap: 29px 402.5px;
+    height: auto;
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    column-gap: 60px;
+    row-gap: 10px;
+    align-items: start;
 }
+
+.companyRow {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    width: 100%;
+    text-align: right;
+}
+
+/* Grid placement: col 1 = job title + dates, col 2 = companyRow (name + logo side-by-side), row 3 = description */
+.we1 > *:nth-child(1), .we2 > *:nth-child(1), .we3 > *:nth-child(1) { grid-column: 1; grid-row: 1; }
+.we1 > *:nth-child(2), .we2 > *:nth-child(2), .we3 > *:nth-child(2) { grid-column: 1; grid-row: 2; }
+.we1 > *:nth-child(3), .we2 > *:nth-child(3), .we3 > *:nth-child(3) { grid-column: 2; grid-row: 1 / span 2; align-self: start; }
+.we1 > *:nth-child(4), .we2 > *:nth-child(4), .we3 > *:nth-child(4) { grid-column: 1 / -1; grid-row: 3; }
 
 .workExperience {
     position: relative;
     width: 100%;
-    left: 20px;
-    margin-bottom: 100px;;
+    left: 0;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    margin-bottom: 100px;
 
     display: flex;
     flex-direction: column;
@@ -135,4 +147,18 @@
     font-family: 'Benton Modern Display', serif;
     font-style: italic;
     font-weight: 400;
+}
+
+@media (max-width: 768px) {
+  .workExperience { gap: 40px; margin-bottom: 60px; font-size: clamp(16px, 4vw, 28px); }
+  .we1, .we2, .we3 { grid-template-columns: 1fr; column-gap: 0; row-gap: 6px; }
+  .we1 > *, .we2 > *, .we3 > * { grid-column: 1 !important; grid-row: auto !important; }
+  .companyRow { flex-direction: row; align-items: center; justify-content: space-between; text-align: left; }
+  .programDevelopmentAssistant, .may2025, .summerStudent { white-space: normal; }
+  .programDevelopmentAssistant, .may2025, .summerStudent { font-size: clamp(16px, 4.5vw, 26px); }
+  .governmentOfAlberta, .governmentOfAlberta1, .governmentOfAlberta2 {
+    font-size: clamp(16px, 4.5vw, 26px); min-width: 0; width: auto;
+  }
+  .albertaGovernmentLogo2svg1Icon { width: clamp(90px, 22vw, 140px); }
+  .imPartOf, .workingInThe { font-size: clamp(13px, 3.2vw, 18px); width: 100%; max-width: 100%; }
 }

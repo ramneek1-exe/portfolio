@@ -210,6 +210,11 @@ html, body, a {
   cursor: none !important;
 }
 
+@media (pointer: coarse) {
+  html, body, a { cursor: auto !important; }
+  .custom-cursor, .custom-follower { display: none !important; }
+}
+
 .custom-cursor,
 .custom-follower {
   position: fixed;

@@ -24,3 +24,10 @@
     line-height: 73.71px;
   }
 }
+
+@media (max-width: 767px) {
+  .scroller { font-size: clamp(32px, 10vw, 60px); line-height: clamp(32px, 10vw, 60px); }
+}
+@media (max-width: 375px) {
+  .scroller { font-size: 28px; line-height: 28px; }
+}

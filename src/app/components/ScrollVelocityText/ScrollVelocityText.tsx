@@ -81,9 +81,8 @@ function VelocityText({
     const xSetter = gsap.quickSetter(scrollerRef.current, "x", "px");
 
     const trigger = ScrollTrigger.create({
-      trigger: document.body,
-      start: "top top",
-      end: "bottom bottom",
+      start: 0,
+      end: "max",
       onUpdate: (self) => {
         const v = self.getVelocity(); 
         

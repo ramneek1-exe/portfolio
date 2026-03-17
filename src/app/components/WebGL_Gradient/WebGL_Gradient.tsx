@@ -13,7 +13,8 @@ const WebGL_Gradient = () => {
 
     const getScroll = () => {
         const smoother = ScrollSmoother.get();
-        return smoother ? smoother.scrollTop() : window.pageYOffset || document.documentElement.scrollTop;
+        if (smoother) return smoother.scrollTop();
+        return window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
     };
 
     useLayoutEffect(() => {
@@ -132,20 +133,23 @@ const WebGL_Gradient = () => {
         
         gsap.ticker.add(render);
 
-        const trigger = ScrollTrigger.create({
-          trigger: document.body,
-          start: 0,
-          end: 1000, 
-          onEnter: () => { isActiveRef.current = true; },
-          onLeave: () => { isActiveRef.current = false; },
-          onEnterBack: () => { isActiveRef.current = true; },
-          onLeaveBack: () => { isActiveRef.current = true; }
-        });
+        let trigger: ReturnType<typeof ScrollTrigger.create> | null = null;
+        if (!window.matchMedia('(pointer: coarse)').matches) {
+          trigger = ScrollTrigger.create({
+            trigger: document.body,
+            start: 0,
+            end: 1000,
+            onEnter: () => { isActiveRef.current = true; },
+            onLeave: () => { isActiveRef.current = false; },
+            onEnterBack: () => { isActiveRef.current = true; },
+            onLeaveBack: () => { isActiveRef.current = true; }
+          });
+        }
 
         return () => {
             window.removeEventListener('resize', resize);
             gsap.ticker.remove(render);
-            trigger.kill();
+            if (trigger) trigger.kill();
             
             gl.deleteProgram(program);
             gl.deleteShader(vertexShader);

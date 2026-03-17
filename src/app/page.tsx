@@ -13,7 +13,7 @@ import Bento from "./components/Bento/Bento";
 import WE_Header from "./components/WE_Header/WE_Header";
 import WE from "./components/WE/WE";
 import Projects_Header from "./components/Projects_Header/Projects_Header";
-import GlitchText from "./components/ReactiveGlitchFooter/GlitchText/GlitchText";
+import Projects from "./components/Projects/Projects";
 import GradientBlinds from "./components/ReactiveGlitchFooter/GradientBlinds/GradientBlinds";
 import Contact from "./components/Contact/Contact";
 import ScrollVelocityText from "./components/ScrollVelocityText/ScrollVelocityText";
@@ -32,6 +32,11 @@ export default function Home() {
   );
 
   const [isLoading, setIsLoading] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.matchMedia('(pointer: coarse)').matches);
+  }, []);
 
   useEffect(() => {
     if (isLoading) {
@@ -61,54 +66,49 @@ export default function Home() {
             <WE_Header />
             <WE />
             <Projects_Header />
+            <Projects />
               <FlipBookGallery />
             <Contact />
-              <div style={{ position: 'relative', width: '100%', height: '400px' }}>
-                <div style={{ 
-                  position: 'absolute', 
-                  inset: 0, 
-                  zIndex: 1,
-                  WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, #181818 40%)',
-                  maskImage: 'linear-gradient(to bottom, transparent 0%, #181818 40%)'
-                }}>
-                  <GradientBlinds
-                    gradientColors={['#00e5ff', '#0077ff', '#001f4d', '#0a0a1a']}
-                    noise={0.2}
-                    angle={-30}
-                  />
-                </div>
+              <div className={styles.glitchFooter}>
+                {isMobile ? (
+                  <div className={styles.mobileFooter}>Ramneek</div>
+                ) : (
+                  <>
+                    <div style={{
+                      position: 'absolute',
+                      inset: 0,
+                      zIndex: 1,
+                      WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, #181818 40%)',
+                      maskImage: 'linear-gradient(to bottom, transparent 0%, #181818 40%)'
+                    }}>
+                      <GradientBlinds
+                        gradientColors={['#00e5ff', '#0077ff', '#001f4d', '#0a0a1a']}
+                        noise={0.2}
+                        angle={-30}
+                      />
+                    </div>
 
-                <div style={{
-                  position: 'absolute',
-                  top: '20px',
-                  right: '20px',
-                  zIndex: 3,
-                  color: 'rgba(255, 255, 255, 0.7)',
-                  fontFamily: 'Geist, sans-serif',
-                  fontSize: '0.875rem',
-                  fontWeight: 400,
-                  letterSpacing: '0.025em'
-                }}>
-                  © {new Date().getFullYear()} Ramneek Singh
-                </div>
-                
-                <div style={{ 
-                  position: 'absolute', 
-                  bottom: 0,
-                  transform: 'translateY(45%)',
-                  inset: 0, 
-                  zIndex: 2, 
-                  pointerEvents: 'none',
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center' 
-                }}>
-                  <GlitchText text="Ramneek" />
-                </div>
+                    <div style={{
+                      position: 'absolute',
+                      top: '20px',
+                      right: '20px',
+                      zIndex: 3,
+                      color: 'rgba(255, 255, 255, 0.7)',
+                      fontFamily: 'Geist, sans-serif',
+                      fontSize: '0.875rem',
+                      fontWeight: 400,
+                      letterSpacing: '0.025em'
+                    }}>
+                      © {new Date().getFullYear()} Ramneek Singh
+                    </div>
+
+                    <div className={styles.glitchTextWrap}>
+                      <span className={styles.desktopFooterText}>Ramneek Singh</span>
+                    </div>
+                  </>
+                )}
               </div>
           </main>
-          <footer className="w-full bg-black py-8">
-          </footer>
         </div>
     </>
   );

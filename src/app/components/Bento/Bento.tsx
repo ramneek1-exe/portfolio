@@ -18,7 +18,7 @@ const Bento = () => {
     });
 
     const ctx = gsap.context(() => {
-      const boxes = gsap.utils.toArray(`.${styles.frameParent} > div`, bentoBoxRef.current) as HTMLElement[];
+      const boxes = gsap.utils.toArray(`.${styles.bentoRow} > div`, bentoBoxRef.current) as HTMLElement[];
       
       gsap.set(boxes, {
         x: 200,
@@ -75,28 +75,28 @@ const Bento = () => {
       }}
     >
       <div ref={bentoBoxRef} className={styles.bentoBox}>
-        <div className={styles.frameParent} data-gsap-group="1">
-          <div className={styles.pythonWrapper}><div className={styles.python}>Python</div></div>
-          <div className={styles.cWrapper}><div className={styles.python}>C++</div></div>
-          <div className={styles.javascriptWrapper}><div className={styles.python}>JavaScript</div></div>
-          <div className={styles.sqlWrapper}><div className={styles.python}>SQL</div></div>
-          <div className={styles.typescriptWrapper}><div className={styles.python}>TypeScript</div></div>
-        </div>
-
-        <div className={styles.frameParent} data-gsap-group="2">
-          <div className={styles.reactWrapper}><div className={styles.python}>React</div></div>
-          <div className={styles.gitWrapper}><div className={styles.python}>Git</div></div>
-          <div className={styles.jiraWrapper}><div className={styles.python}>Jira</div></div>
-          <div className={styles.nextjsWrapper}><div className={styles.python}>Next.js</div></div>
-          <div className={styles.figmaWrapper}><div className={styles.python}>Figma</div></div>
-        </div>
-
-        <div className={styles.frameParent} data-gsap-group="3">
-          <div className={styles.oopWrapper}><div className={styles.python}>OOP</div></div>
-          <div className={styles.agileWrapper}><div className={styles.python}>Agile</div></div>
-          <div className={styles.dbmsWrapper}><div className={styles.python}>DBMS</div></div>
-          <div className={styles.dsaWrapper}><div className={styles.python}>DSA</div></div>
-          <div className={styles.uiuxWrapper}><div className={styles.python}>UI/UX</div></div>
+        <div className={styles.tilesGrid}>
+          <div className={styles.bentoRow}>
+            <div className={styles.pythonWrapper}><div className={styles.python}>Python</div></div>
+            <div className={styles.cWrapper}><div className={styles.python}>C++</div></div>
+            <div className={styles.javascriptWrapper}><div className={styles.python}>JavaScript</div></div>
+            <div className={styles.sqlWrapper}><div className={styles.python}>SQL</div></div>
+            <div className={styles.typescriptWrapper}><div className={styles.python}>TypeScript</div></div>
+          </div>
+          <div className={styles.bentoRow}>
+            <div className={styles.reactWrapper}><div className={styles.python}>React</div></div>
+            <div className={styles.gitWrapper}><div className={styles.python}>Git</div></div>
+            <div className={styles.jiraWrapper}><div className={styles.python}>Jira</div></div>
+            <div className={styles.nextjsWrapper}><div className={styles.python}>Next.js</div></div>
+            <div className={styles.figmaWrapper}><div className={styles.python}>Figma</div></div>
+          </div>
+          <div className={styles.bentoRow}>
+            <div className={styles.oopWrapper}><div className={styles.python}>OOP</div></div>
+            <div className={styles.agileWrapper}><div className={styles.python}>Agile</div></div>
+            <div className={styles.dbmsWrapper}><div className={styles.python}>DBMS</div></div>
+            <div className={styles.dsaWrapper}><div className={styles.python}>DSA</div></div>
+            <div className={styles.uiuxWrapper}><div className={styles.python}>UI/UX</div></div>
+          </div>
         </div>
       </div>
     </div>

@@ -8,6 +8,9 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 export default function SmoothScroller({ children }: { children: React.ReactNode }) {
   useLayoutEffect(() => {
+    const isTouch = window.matchMedia('(pointer: coarse)').matches;
+    if (isTouch) return;
+
     const smoother = ScrollSmoother.get();
     if (smoother) {
       smoother.kill();
@@ -19,7 +22,12 @@ export default function SmoothScroller({ children }: { children: React.ReactNode
       normalizeScroll: false,
       ignoreMobileResize: true,
     });
+
+    const handleOrientationChange = () => setTimeout(() => ScrollTrigger.refresh(), 300);
+    window.addEventListener('orientationchange', handleOrientationChange);
+
     return () => {
+      window.removeEventListener('orientationchange', handleOrientationChange);
       const smoother = ScrollSmoother.get();
       if (smoother) {
         smoother.kill();

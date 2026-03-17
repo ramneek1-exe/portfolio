@@ -1,0 +1,224 @@
+.projectsSection {
+  width: 100%;
+  padding: 0 5vw;
+  margin-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* ── Deadliner Card ─────────────────────────────── */
+
+.card {
+  background: #181818;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+}
+
+.mockupContainer {
+  position: relative;
+  height: 320px;
+  background: #0d0d0d;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.macbookMockup {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.iphoneWrapper {
+  position: absolute;
+  right: 24px;
+  bottom: 0;
+  width: 120px;
+  pointer-events: none;
+}
+
+.iphoneMockup {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 16px;
+}
+
+.cardBody {
+  padding: 28px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+
+.projectTitle {
+  font-family: 'Benton Modern Display', serif;
+  font-style: italic;
+  font-weight: 900;
+  font-size: clamp(36px, 5vw, 64px);
+  color: #f8f8ff;
+  line-height: 1;
+  margin: 0;
+}
+
+.projectDescription {
+  font-family: 'Geist', sans-serif;
+  font-weight: 300;
+  font-size: clamp(14px, 1.5vw, 16px);
+  color: #a0a0a0;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.techStack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.techTag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  color: #04d9ff;
+  border: 1px solid rgba(4, 217, 255, 0.3);
+  border-radius: 20px;
+  background: rgba(4, 217, 255, 0.05);
+  padding: 4px 12px;
+  white-space: nowrap;
+}
+
+.cardLinks {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+.linkPrimary,
+.linkSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Geist', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 1px solid;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.linkPrimary {
+  color: #04d9ff;
+  border-color: rgba(4, 217, 255, 0.4);
+}
+
+.linkPrimary:hover {
+  background: rgba(4, 217, 255, 0.1);
+}
+
+.linkSecondary {
+  color: rgba(255, 255, 255, 0.6);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.linkSecondary:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ── Coming Soon Card ──────────────────────────── */
+
+.cardComingSoon {
+  background: transparent;
+  border-radius: 20px;
+  border: 1.5px dashed rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 280px;
+  padding: 40px 28px;
+  opacity: 0;
+}
+
+.comingSoonLabel {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.comingSoonTitle {
+  font-family: 'Benton Modern Display', serif;
+  font-style: italic;
+  font-weight: 900;
+  font-size: clamp(28px, 4vw, 48px);
+  color: rgba(255, 255, 255, 0.2);
+  text-align: center;
+  animation: pulseOpacity 3s ease-in-out infinite;
+}
+
+@keyframes pulseOpacity {
+  0%, 100% { opacity: 0.3; }
+  50%       { opacity: 0.7; }
+}
+
+/* ── Mobile ─────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .cardsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .mockupContainer {
+    height: 260px;
+  }
+}
+
+@media (max-width: 768px) {
+  .projectsSection {
+    padding: 0 5vw;
+    margin-bottom: 60px;
+  }
+
+  .mockupContainer {
+    height: 200px;
+  }
+
+  .cardBody {
+    padding: 20px 20px 18px;
+  }
+
+  .cardComingSoon {
+    min-height: 160px;
+  }
+}
+
+@media (max-width: 375px) {
+  .mockupContainer {
+    height: 160px;
+  }
+
+  .iphoneWrapper {
+    width: 80px;
+  }
+}

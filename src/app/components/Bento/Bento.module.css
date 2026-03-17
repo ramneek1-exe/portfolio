@@ -7,7 +7,8 @@
 .pythonWrapper {
     flex: 1;
     border-radius: 16px;
-    height: 145px;
+    height: auto;
+    aspect-ratio: 3/2;
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -26,7 +27,8 @@
 .cWrapper {
     flex: 1;
     border-radius: 16px;
-    height: 145px;
+    height: auto;
+    aspect-ratio: 3/2;
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -45,7 +47,8 @@
 .javascriptWrapper {
     flex: 1;
     border-radius: 16px;
-    height: 145px;
+    height: auto;
+    aspect-ratio: 3/2;
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -63,7 +66,8 @@
 .sqlWrapper {
     width: 150px;
     border-radius: 16px;
-    height: 145px;
+    height: auto;
+    aspect-ratio: 3/2;
     overflow: hidden;
     flex-shrink: 0;
     display: flex;
@@ -81,7 +85,8 @@
 .typescriptWrapper {
     flex: 1;
     border-radius: 16px;
-    height: 145px;
+    height: auto;
+    aspect-ratio: 3/2;
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -97,25 +102,57 @@
     max-width: 275px;
 }
 
-.frameParent {
-    align-self: stretch;
-    flex: 1;
-    border-radius: 15px;
-    overflow: hidden;
+.tilesGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0px 10px;
+    width: 100%;
+}
+
+.bentoRow {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-content: center;
-    padding: 0px 10px;
     gap: 20px;
+    width: 100%;
 }
+
+/* Override per-tile flex constraints inside rows */
+.bentoRow > * {
+    min-width: 0;
+    max-width: none;
+    width: auto;
+    flex-shrink: 1;
+    aspect-ratio: unset !important;
+    height: 145px !important;
+}
+
+/* Row 1: python(4) c++(3) js(5) sql(3) ts(5) */
+.bentoRow:nth-child(1) > *:nth-child(1) { flex: 4; }
+.bentoRow:nth-child(1) > *:nth-child(2) { flex: 3; }
+.bentoRow:nth-child(1) > *:nth-child(3) { flex: 5; }
+.bentoRow:nth-child(1) > *:nth-child(4) { flex: 3; }
+.bentoRow:nth-child(1) > *:nth-child(5) { flex: 5; }
+
+/* Row 2: react(4) git(3) jira(3) nextjs(4) figma(4) */
+.bentoRow:nth-child(2) > *:nth-child(1) { flex: 4; }
+.bentoRow:nth-child(2) > *:nth-child(2) { flex: 3; }
+.bentoRow:nth-child(2) > *:nth-child(3) { flex: 3; }
+.bentoRow:nth-child(2) > *:nth-child(4) { flex: 4; }
+.bentoRow:nth-child(2) > *:nth-child(5) { flex: 4; }
+
+/* Row 3: oop(3) agile(3) dbms(4) dsa(5) uiux(5) */
+.bentoRow:nth-child(3) > *:nth-child(1) { flex: 3; }
+.bentoRow:nth-child(3) > *:nth-child(2) { flex: 3; }
+.bentoRow:nth-child(3) > *:nth-child(3) { flex: 4; }
+.bentoRow:nth-child(3) > *:nth-child(4) { flex: 5; }
+.bentoRow:nth-child(3) > *:nth-child(5) { flex: 5; }
 
 .reactWrapper {
     flex: 1;
     border-radius: 16px;
-    height: 145px;
+    height: auto;
+    aspect-ratio: 3/2;
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -133,7 +170,8 @@
 .gitWrapper {
     flex: 1;
     border-radius: 16px;
-    height: 145px;
+    height: auto;
+    aspect-ratio: 3/2;
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -152,7 +190,8 @@
 .jiraWrapper {
     flex: 1;
     border-radius: 16px;
-    height: 145px;
+    height: auto;
+    aspect-ratio: 3/2;
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -170,7 +209,8 @@
 .nextjsWrapper {
     flex: 1;
     border-radius: 16px;
-    height: 145px;
+    height: auto;
+    aspect-ratio: 3/2;
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -188,7 +228,8 @@
 .figmaWrapper {
     flex: 1;
     border-radius: 16px;
-    height: 145px;
+    height: auto;
+    aspect-ratio: 3/2;
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -207,7 +248,8 @@
 .oopWrapper {
     flex: 1;
     border-radius: 16px;
-    height: 145px;
+    height: auto;
+    aspect-ratio: 3/2;
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -225,7 +267,8 @@
 .agileWrapper {
     flex: 1;
     border-radius: 16px;
-    height: 145px;
+    height: auto;
+    aspect-ratio: 3/2;
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -243,7 +286,8 @@
 .dbmsWrapper {
     flex: 1;
     border-radius: 16px;
-    height: 145px;
+    height: auto;
+    aspect-ratio: 3/2;
     max-width: 207.2px;
     overflow: hidden;
     display: flex;
@@ -261,7 +305,8 @@
 .dsaWrapper {
     flex: 1;
     border-radius: 16px;
-    height: 145px;
+    height: auto;
+    aspect-ratio: 3/2;
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -278,7 +323,8 @@
 .uiuxWrapper {
     flex: 1;
     border-radius: 16px;
-    height: 145px;
+    height: auto;
+    aspect-ratio: 3/2;
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -294,11 +340,10 @@
 
 .bentoBox {
     width: 90%;
-    left: 20px;
     margin-bottom: 100px;
     margin-top: 100px;
     position: relative;
-    height: 500px;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -309,4 +354,28 @@
     font-size: 48px;
     color: #fff;
     font-family: 'Geist';
+}
+
+
+@media (max-width: 768px) {
+  .bentoBox { width: 95%; margin-top: 40px; margin-bottom: 60px; font-size: 6vw; }
+  .python { white-space: nowrap; }
+  .tilesGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 0;
+  }
+  /* Make row containers transparent to the grid */
+  .bentoRow { display: contents; }
+  .bentoRow > * {
+    height: 72px !important;
+    border-radius: 100px;
+    aspect-ratio: unset;
+    min-width: 0;
+    max-width: none;
+    flex: none;
+    width: auto;
+  }
+  .uiuxWrapper { grid-column: 1 / -1; }
 }

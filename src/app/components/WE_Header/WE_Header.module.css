@@ -11,7 +11,7 @@
     position: absolute;
     top: 0px;
     left: 0px;
-    font-size: 70px;
+    font-size: 73.71px;
     font-weight: 600;
     font-family: 'Geist';
 }
@@ -22,9 +22,25 @@
     left: 20px;
     margin-bottom: 100px;
     margin-top: 150px;
-    height: 149px;
+    height: auto;
+    min-height: 160px;
+    padding-bottom: 40px;
     text-align: left;
     font-size: 46px;
     color: #e8e7e3;
     font-family: 'Geist';
+}
+
+@media (max-width: 768px) {
+  .weHeader {
+    height: auto; min-height: unset; margin-top: 60px; margin-bottom: 60px;
+    padding-left: 5vw; left: 0;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .workExperience { position: relative; font-size: clamp(36px, 9vw, 73px); }
+  .applyingWhatI  { position: relative; top: auto; font-size: clamp(11px, 2.5vw, 15px); }
+}
+@media (max-width: 375px) {
+  .workExperience { font-size: 36px; }
+  .applyingWhatI  { font-size: 11px; }
 }

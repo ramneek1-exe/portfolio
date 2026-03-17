@@ -67,7 +67,7 @@ const Projects_Header = () => {
         Projects
       </div>
       <i ref={workRef} className={styles.workInProgress}>
-        Work in progress... Until then, enjoy some of my pictures!
+        What I've been building.
       </i>
     </div>
   );

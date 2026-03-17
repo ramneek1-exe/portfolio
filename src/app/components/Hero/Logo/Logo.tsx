@@ -1,5 +1,5 @@
 'use client'
-import { useRef, useLayoutEffect } from 'react' // Changed to useLayoutEffect
+import { useRef, useLayoutEffect, useState, useEffect } from 'react'
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styles from './Logo.module.css'
@@ -14,12 +14,18 @@ interface LogoProps {
 
 export default function Logo({ className, width = 420, height = 219 }: LogoProps) {
     const containerRef = useRef<HTMLDivElement>(null)
-    
+
     const rendererRef = useRef<any>(null);
     const animationIdRef = useRef<number | null>(null);
     const isAnimatingRef = useRef(true); // Start true since it's in the Hero
 
+    const [isMobile, setIsMobile] = useState(false);
+    useEffect(() => {
+      setIsMobile(window.matchMedia('(pointer: coarse)').matches);
+    }, []);
+
     useLayoutEffect(() => {
+        if (isMobile) return;
         const THREE = (window as any).THREE;
         if (!THREE) {
           console.error("THREE.js not loaded.");
@@ -274,13 +280,26 @@ export default function Logo({ className, width = 420, height = 219 }: LogoProps
               }
             });
         }
-    }, [width, height]) 
+    }, [width, height, isMobile])
 
     return (
-      <div 
-        ref={containerRef} 
+      <div
+        ref={containerRef}
         className={`${styles.logoContainer} ${className || ''}`}
-        style={{ width, height }}
-      />
+        style={isMobile ? { width: '100%', maxWidth: 280, height: 'auto', pointerEvents: 'none' } : { width, height }}
+      >
+        {isMobile ? (
+          <svg viewBox="0 0 420 219" fill="none" xmlns="http://www.w3.org/2000/svg" width="100%" height="auto" aria-label="RS Monogram">
+            <defs>
+              <linearGradient id="logo-grad-m" x1="144.494" y1="44.5086" x2="73.0597" y2="136.175" gradientUnits="userSpaceOnUse">
+                <stop stopColor="#F1F1F1" stopOpacity="0"/>
+                <stop offset="1" stopColor="#04D9FF"/>
+              </linearGradient>
+            </defs>
+            <path d="M351.556 0.491638H89.1852V43.485H341.185C364 43.485 395.457 57.4749 395.457 83.7486C395.457 107.002 373.621 130.495 351.556 130.495C349.136 130.495 341.908 130.577 331.571 130.694C295.201 131.106 220.338 131.953 180.916 131.207C180.877 131.188 180.835 131.178 180.79 131.178C110.818 130.799 90.6916 74.1642 90.5679 44.9016V44.5892C90.5679 44.3307 90.42 44.0944 90.1857 43.9788C89.9911 43.8827 89.762 43.8827 89.5674 43.9788C89.3331 44.0944 89.1852 44.3307 89.1852 44.5892V44.9016C89.1852 113.359 30.129 130.419 0.518519 131.178C-0.17284 131.178 -0.17284 132.629 0.518519 132.629C71.3136 132.629 88.4938 188.93 88.4938 218.188C88.4938 218.871 89.8765 218.871 89.8765 218.188C90.2688 149.66 151.178 134.034 180.636 133.569L180.932 133.567C181.044 133.567 181.113 133.566 181.136 133.566H269.63C366.765 133.566 368.148 218.529 368.148 218.529H420C420 150.742 372.477 133.68 348.239 133.566H351.556C374.37 132.77 420 118.553 420 68.0526C420 17.5525 374.37 1.97025 351.556 0.491638Z" fill="#F1F1F1"/>
+            <path d="M351.556 0.491638H89.1852V43.485H341.185C364 43.485 395.457 57.4749 395.457 83.7486C395.457 107.002 373.621 130.495 351.556 130.495C349.136 130.495 341.908 130.577 331.571 130.694C295.201 131.106 220.338 131.953 180.916 131.207C180.877 131.188 180.835 131.178 180.79 131.178C110.818 130.799 90.6916 74.1642 90.5679 44.9016V44.5892C90.5679 44.3307 90.42 44.0944 90.1857 43.9788C89.9911 43.8827 89.762 43.8827 89.5674 43.9788C89.3331 44.0944 89.1852 44.3307 89.1852 44.5892V44.9016C89.1852 113.359 30.129 130.419 0.518519 131.178C-0.17284 131.178 -0.17284 132.629 0.518519 132.629C71.3136 132.629 88.4938 188.93 88.4938 218.188C88.4938 218.871 89.8765 218.871 89.8765 218.188C90.2688 149.66 151.178 134.034 180.636 133.569L180.932 133.567C181.044 133.567 181.113 133.566 181.136 133.566H269.63C366.765 133.566 368.148 218.529 368.148 218.529H420C420 150.742 372.477 133.68 348.239 133.566H351.556C374.37 132.77 420 118.553 420 68.0526C420 17.5525 374.37 1.97025 351.556 0.491638Z" fill="url(#logo-grad-m)"/>
+          </svg>
+        ) : null}
+      </div>
     )
 }

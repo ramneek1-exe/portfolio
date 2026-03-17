@@ -4,3 +4,57 @@
   position: relative;
   isolation: isolate;
 }
+
+.glitchFooter {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .glitchFooter {
+    height: 110px;
+  }
+}
+
+.glitchTextWrap {
+  position: absolute;
+  inset: 0;
+  bottom: 0;
+  transform: translateY(30%);
+  z-index: 2;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .glitchTextWrap {
+    transform: translateY(10%);
+  }
+}
+
+.mobileFooter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-family: 'Benton Modern Display', serif;
+  font-style: italic;
+  font-weight: 900;
+  font-size: clamp(56px, 18vw, 100px);
+  color: #e8e7e3;
+}
+
+.desktopFooterText {
+  font-family: 'Benton Modern Display', serif;
+  font-style: italic;
+  font-weight: 900;
+  font-size: 12vw;
+  color: #e8e7e3;
+  line-height: 1;
+  white-space: nowrap;
+}

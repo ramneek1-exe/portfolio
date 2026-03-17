@@ -28,7 +28,8 @@ export default function GlitchText({
     }
 
     const resizeCanvas = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const isMobile = window.matchMedia('(pointer: coarse)').matches;
+      const dpr = isMobile ? 1 : Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = 700 * dpr;
       canvas.height = 400 * dpr;
       gl.viewport(0, 0, canvas.width, canvas.height);
@@ -267,7 +268,7 @@ export default function GlitchText({
     <canvas 
       ref={canvasRef} 
       className={className}
-      style={{ width: '99%', height: '500px', display: 'block', pointerEvents: 'none', margin: '0 auto' }}
+      style={{ width: '99%', height: '100%', display: 'block', pointerEvents: 'none', margin: '0 auto' }}
     />
   );
 }

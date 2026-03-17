@@ -34,8 +34,26 @@ const Intro = () => {
       });
     }, textRef); // Scope the context to the component's root
 
+    const observer = new ResizeObserver(() => {
+      if (splitRef.current) splitRef.current.revert();
+      splitRef.current = new SplitText(textRef.current, { type: "lines" });
+      gsap.from(splitRef.current.lines, {
+        y: 25,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: textRef.current,
+          start: "top 80%",
+          toggleActions: "play none none none"
+        }
+      });
+    });
+    if (textRef.current) observer.observe(textRef.current);
 
     return () => {
+      observer.disconnect();
       ctx.revert(); // This will kill the animation and revert the SplitText
     };
   }, []); // Empty dependency array

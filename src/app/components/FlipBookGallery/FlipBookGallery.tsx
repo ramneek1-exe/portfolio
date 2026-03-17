@@ -38,9 +38,19 @@ const FlipBookGallery: React.FC = () => {
     const [cards, setCards] = useState<Card[]>([]);
     const [hoveredCard, setHoveredCard] = useState<number | null>(null);
     const [mounted, setMounted] = useState(false);
-    
+
+    const [vpWidth, setVpWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1440);
+    useEffect(() => {
+        const onResize = () => setVpWidth(window.innerWidth);
+        window.addEventListener('resize', onResize);
+        return () => window.removeEventListener('resize', onResize);
+    }, []);
+    const isMobileView = vpWidth < 768;
+    const baseWidth    = isMobileView ? Math.min(vpWidth * 0.85, 350) : 500;
+    const noteInitialX = isMobileView ? vpWidth * 0.35 : 480;
+
     const [singleNote, setSingleNote] = useState<SingleNote>({
-        x: 480, 
+        x: 480,
         y: 100,
         rotation: 3,
         currentPageIndex: 0
@@ -326,14 +336,14 @@ const FlipBookGallery: React.FC = () => {
     const openDestination = (destination: Destination) => {
         setSelectedDestination(destination);
         setCards(destination.pages.map((_, index) => ({ id: index })));
-        setSingleNote({ x: 480, y: 100, rotation: Math.random() * 10 - 5, currentPageIndex: 0 });
+        setSingleNote({ x: noteInitialX, y: 100, rotation: Math.random() * 10 - 5, currentPageIndex: 0 });
         document.body.style.overflow = 'hidden';
     };
 
     const closeModal = () => {
         setSelectedDestination(null);
         setCards([]);
-        setSingleNote({ x: 480, y: 100, rotation: 3, currentPageIndex: 0 });
+        setSingleNote({ x: noteInitialX, y: 100, rotation: 3, currentPageIndex: 0 });
         if (typeof document !== 'undefined') document.body.style.overflow = 'auto';
     };
 
@@ -366,22 +376,38 @@ const FlipBookGallery: React.FC = () => {
         setTimeout(() => animateNoteDisplacement(), 50);
     };
 
-    const containerStyle: React.CSSProperties = { minHeight: '100px', fontFamily: 'Benton Modern Display, serif', fontStyle: 'italic', padding: '2rem' };
-    const albumsContainerStyle: React.CSSProperties = { maxWidth: '64rem', margin: '0 auto' };
-    const albumsGridStyle: React.CSSProperties = { display: 'flex', gap: '2rem', justifyContent: 'center', alignItems: 'center', minHeight: '100px' };
-    
+    const containerStyle: React.CSSProperties = { minHeight: '100px', fontFamily: 'Benton Modern Display, serif', fontStyle: 'italic' };
+    const albumsContainerStyle: React.CSSProperties = { paddingLeft: '5vw', paddingRight: '5vw', paddingBottom: '2rem' };
+    const albumsGridStyle: React.CSSProperties = { display: 'flex', gap: isMobileView ? '1rem' : '2rem', flexWrap: 'wrap', justifyContent: 'flex-start', alignItems: 'center', minHeight: '100px' };
+
     const albumCardStyle: React.CSSProperties = {
         position: 'relative', cursor: 'pointer', transform: 'scale(1)', transition: 'transform 0.3s ease',
-        borderRadius: '1rem', padding: '2rem', width: '24rem', height: '18rem',
+        borderRadius: '1rem', padding: '2rem',
+        width: isMobileView ? 'min(85vw, 340px)' : '24rem',
+        height: isMobileView ? '14rem' : '18rem',
         boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)', color: 'white',
         display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start',
         overflow: 'hidden', pointerEvents: 'auto', background: '#000'
     };
 
-    const modalOverlayStyle: React.CSSProperties = { position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0, 0, 0, 0.6)', backdropFilter: 'blur(12px)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' };
-    const modalContentStyle: React.CSSProperties = { position: 'fixed', top: 0, left: 0, marginTop: '4500px', marginLeft: 'calc(50vw - 450px)', width: '900px', height: '600px', maxWidth: '95vw', maxHeight: '95vh', borderRadius: '1rem', overflow: 'visible', zIndex: 10000 };
+    const modalOverlayStyle: React.CSSProperties = {
+        position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.6)', backdropFilter: 'blur(12px)',
+        zIndex: 9999, display: 'flex',
+        alignItems: 'center', justifyContent: 'center',
+        padding: isMobileView ? '0' : '2rem'
+    };
+    const modalContentStyle: React.CSSProperties = {
+        position: 'relative',
+        width: isMobileView ? '100vw' : '900px',
+        height: isMobileView ? '100vh' : '600px',
+        maxWidth: isMobileView ? '100vw' : '95vw',
+        maxHeight: isMobileView ? '100vh' : '95vh',
+        borderRadius: isMobileView ? '0' : '1rem',
+        overflow: 'visible', zIndex: 10000
+    };
     const stackContainerStyle: React.CSSProperties = { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem', overflow: 'visible' };
-    const perspectiveContainerStyle: React.CSSProperties = { position: 'fixed', width: 400, height: 300, perspective: 1000 };
+    const perspectiveContainerStyle: React.CSSProperties = { position: 'relative', width: baseWidth, height: Math.round(baseWidth * 0.75), perspective: 1000 };
 
     return (
         <>
@@ -389,6 +415,16 @@ const FlipBookGallery: React.FC = () => {
                 {selectedDestination && (
                     <div className="flipbook-force-visible" style={modalOverlayStyle} onClick={closeModal}>
                         <div className="flipbook-force-visible" style={modalContentStyle} onClick={(e) => e.stopPropagation()}>
+                            <button
+                                onClick={closeModal}
+                                style={{
+                                    position: 'absolute', top: '16px', right: '16px', zIndex: 10001,
+                                    background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(255,255,255,0.25)',
+                                    color: 'white', borderRadius: '50%', width: '40px', height: '40px',
+                                    cursor: 'pointer', fontSize: '1.1rem', display: 'flex',
+                                    alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+                                }}
+                            >✕</button>
                             <div className="flipbook-force-visible" style={stackContainerStyle}>
                                 <div className="flipbook-force-visible" style={perspectiveContainerStyle}>
                                     {cards.map((card, index) => {
@@ -396,7 +432,6 @@ const FlipBookGallery: React.FC = () => {
                                         const stackRotation = (cards.length - index - 1) * 4 + (Math.random() * 10 - 5);
                                         const stackScale = 1 + index * 0.06 - cards.length * 0.06;
                                         const dimensions = imageDimensions[card.id];
-                                        const baseWidth = 500;
                                         let cardHeight = baseWidth;
                                         if (dimensions) {
                                             const aspectRatio = dimensions.width / dimensions.height;
@@ -458,6 +493,15 @@ const FlipBookGallery: React.FC = () => {
                         </div>
                     </div>
                 )}
+
+                <div style={{ paddingLeft: '5vw', paddingRight: '5vw', paddingTop: '2rem', marginBottom: isMobileView ? '40px' : '80px' }}>
+                    <div style={{ fontSize: 'clamp(36px, 6vw, 73.71px)', fontWeight: 600, fontFamily: 'Geist, sans-serif', fontStyle: 'normal', color: '#e8e7e3' }}>
+                        Gallery
+                    </div>
+                    <i style={{ fontSize: 'clamp(18px, 3vw, 46px)', fontWeight: 300, fontFamily: 'Benton Modern Display, serif', fontStyle: 'italic', color: '#e8e7e3' }}>
+                        Places I&apos;ve been.
+                    </i>
+                </div>
 
                 <div style={albumsContainerStyle}>
                     <div style={albumsGridStyle}>

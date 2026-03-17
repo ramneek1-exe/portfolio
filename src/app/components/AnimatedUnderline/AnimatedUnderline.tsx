@@ -64,9 +64,10 @@ const AnimatedUnderline: React.FC<AnimatedUnderlineProps> = ({
       <p className={styles.text}>{text}</p>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 100 25"
+        viewBox="0 -35 360 100"
         className={styles.svg}
         preserveAspectRatio="none"
+        overflow="visible"
       >
         <defs>
           <linearGradient

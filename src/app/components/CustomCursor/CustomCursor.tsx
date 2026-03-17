@@ -8,6 +8,8 @@ const CustomCursor = () => {
   const followerRef = useRef<HTMLSpanElement>(null);
 
   useGSAP(() => {
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+
     const cursor = cursorRef.current;
     const follower = followerRef.current;
     if (!cursor || !follower) return;
