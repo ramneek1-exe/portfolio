@@ -24,7 +24,6 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  opacity: 0;
 }
 
 .mockupContainer {
@@ -156,7 +155,6 @@
   gap: 12px;
   min-height: 280px;
   padding: 40px 28px;
-  opacity: 0;
 }
 
 .comingSoonLabel {
