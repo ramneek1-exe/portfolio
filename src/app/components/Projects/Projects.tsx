@@ -36,7 +36,7 @@ const projects: Project[] = [
     slug: 'sector4',
     title: 'Sector 4',
     description:
-      'A natural language interface over F1 telemetry that turns practice-session data into ML-backed race pace predictions, with explanations grounded in the model’s own feature attributions.',
+      'An explainer-led F1 weekend companion: honest, calibrated podium odds and strategy calls, each linked to an explanation of the reasoning. Built on a validation study that found practice telemetry gives no podium edge over public data - so the product leads with calibrated probabilities and a publicly scored track record instead of a predictive claim it cannot support.',
     tech: ['Next.js', 'Python', 'scikit-learn', 'Claude API', 'TypeScript'],
     desktopImage: '/projects/sector4-macbook.jpeg',
     mobileImage: '/projects/sector4-iphone.jpeg',
