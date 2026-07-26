@@ -1,8 +1,10 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { gsap } from 'gsap';
 import { Draggable } from 'gsap/Draggable';
+import { ScrollSmoother } from 'gsap/ScrollSmoother';
 
 gsap.registerPlugin(Draggable);
 
@@ -338,6 +340,7 @@ const FlipBookGallery: React.FC = () => {
         setCards(destination.pages.map((_, index) => ({ id: index })));
         setSingleNote({ x: noteInitialX, y: 100, rotation: Math.random() * 10 - 5, currentPageIndex: 0 });
         document.body.style.overflow = 'hidden';
+        ScrollSmoother.get()?.paused(true);
     };
 
     const closeModal = () => {
@@ -345,6 +348,7 @@ const FlipBookGallery: React.FC = () => {
         setCards([]);
         setSingleNote({ x: noteInitialX, y: 100, rotation: 3, currentPageIndex: 0 });
         if (typeof document !== 'undefined') document.body.style.overflow = 'auto';
+        ScrollSmoother.get()?.paused(false);
     };
 
     const animateNoteDisplacement = () => {
@@ -412,7 +416,7 @@ const FlipBookGallery: React.FC = () => {
     return (
         <>
             <div style={containerStyle}>
-                {selectedDestination && (
+                {mounted && selectedDestination && createPortal(
                     <div className="flipbook-force-visible" style={modalOverlayStyle} onClick={closeModal}>
                         <div className="flipbook-force-visible" style={modalContentStyle} onClick={(e) => e.stopPropagation()}>
                             <button
@@ -491,7 +495,8 @@ const FlipBookGallery: React.FC = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>,
+                    document.body
                 )}
 
                 <div style={{ paddingLeft: '5vw', paddingRight: '5vw', paddingTop: '2rem', marginBottom: isMobileView ? '40px' : '80px' }}>
