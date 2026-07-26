@@ -8,7 +8,7 @@ const WE = () => {
       <div className={styles.workExperience}>
           <div className={styles.we1}>
               <div className={styles.programDevelopmentAssistant}>Program Development Assistant</div>
-              <div className={styles.may2025}>May 2025 - Dec 2025</div>
+              <div className={styles.may2025}>May 2025 - Dec 2025<br />May 2026 - Present</div>
               <div className={styles.companyRow}>
                 <div className={styles.governmentOfAlberta}>Government of Alberta</div>
                 <Image className={styles.albertaGovernmentLogo2svg1Icon} width={161.6} height={61.7} sizes="100vw" alt="" src={GoA_Logo} />
