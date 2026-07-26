@@ -64,7 +64,7 @@ const Projects_Header = () => {
   return (
     <div ref={mainRef} className={styles.projectsHeader}>
       <div ref={projectsRef} className={styles.projects}>
-        Projects
+        My Work
       </div>
       <i ref={workRef} className={styles.workInProgress}>
         What I've been building.
