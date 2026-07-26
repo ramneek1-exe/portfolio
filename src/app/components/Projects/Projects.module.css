@@ -15,7 +15,7 @@
   max-width: 1200px;
 }
 
-/* ── Deadliner Card ─────────────────────────────── */
+/* ── Project Card ───────────────────────────────── */
 
 .card {
   background: #181818;
@@ -142,44 +142,6 @@
   color: rgba(255, 255, 255, 0.9);
 }
 
-/* ── Coming Soon Card ──────────────────────────── */
-
-.cardComingSoon {
-  background: transparent;
-  border-radius: 20px;
-  border: 1.5px dashed rgba(255, 255, 255, 0.12);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  min-height: 280px;
-  padding: 40px 28px;
-}
-
-.comingSoonLabel {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.3);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.comingSoonTitle {
-  font-family: 'Benton Modern Display', serif;
-  font-style: italic;
-  font-weight: 900;
-  font-size: clamp(28px, 4vw, 48px);
-  color: rgba(255, 255, 255, 0.2);
-  text-align: center;
-  animation: pulseOpacity 3s ease-in-out infinite;
-}
-
-@keyframes pulseOpacity {
-  0%, 100% { opacity: 0.3; }
-  50%       { opacity: 0.7; }
-}
-
 /* ── Mobile ─────────────────────────────────────── */
 
 @media (max-width: 900px) {
@@ -204,10 +166,6 @@
 
   .cardBody {
     padding: 20px 20px 18px;
-  }
-
-  .cardComingSoon {
-    min-height: 160px;
   }
 }
 
